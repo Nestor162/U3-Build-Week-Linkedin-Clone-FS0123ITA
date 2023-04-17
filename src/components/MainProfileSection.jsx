@@ -7,12 +7,9 @@ import { personalProfileFetch } from '../redux/actions';
 const MainProfileSection = () => {
 	const profileName = useSelector((state) => state.personalProfile.profileName);
 	const profileLastname = useSelector((state) => state.personalProfile.profileLastname);
-	const profileEmail = useSelector((state) => state.personalProfile.profileEmail);
-	const profileBio = useSelector((state) => state.personalProfile.profileBio);
 	const profileTitle = useSelector((state) => state.personalProfile.profileTitle);
 	const profileArea = useSelector((state) => state.personalProfile.profileArea);
-	const profileUsername = useSelector((state) => state.personalProfile.profileUsername);
-	const profileId = useSelector((state) => state.personalProfile.profileId);
+	const profileImg = useSelector((state) => state.personalProfile.profileImg);
 
 	const dispatch = useDispatch();
 
@@ -22,15 +19,26 @@ const MainProfileSection = () => {
 	}, []);
 
 	return (
-		<Container>
-			<Card>
+		<Container id="mainProfileContainer">
+			<Card className="mainProfileCard">
+				<img src={profileImg} alt="profile" id="mainProfilePicture" />
 				<Card.Img variant="top" src={ProfileCoverImage} />
-				<Card.Body>
-					<Card.Title>
+
+				<Button variant="none" className="mainProfileButtonEdit">
+					<i className="bi bi-pencil mainProfileEdit"></i>
+				</Button>
+
+				<Card.Body id="mainProfileBody">
+					<Card.Title className="mainProfileName">
 						{profileName} {profileLastname}
 					</Card.Title>
-					<Card.Text>Some quick example text to build on the card title and make up the bulk of the card's content.</Card.Text>
-					<Button variant="primary">Go somewhere</Button>
+					<Card.Text className="mainProfileTitle">{profileTitle}</Card.Text>
+					<Card.Text className="mainProfileArea">
+						{profileArea} - <span className="mainProfileContactInfo"> Contact info </span>
+					</Card.Text>
+					<Button className="mainProfileButtonOpen">Open to</Button>
+					<Button className="mainProfileButtonAdd">Add profile section</Button>
+					<Button className="mainProfileButtonMore">More</Button>
 				</Card.Body>
 			</Card>
 		</Container>

@@ -159,3 +159,9 @@ body{
     font-weight: 600;
     margin-right: 0.5rem;
 }
+
+.activityButton:hover {
+    border: inset 2px solid #0B66C2;
+    background-color: #C5E0FC;
+    color: #0B66C2;
+}

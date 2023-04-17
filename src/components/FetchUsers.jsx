@@ -31,7 +31,7 @@ function FetchUsers({ nResults }) {
     <>
       {userList.length > 0 &&
         userList.slice(0, nResults).map(user => {
-          return <PeopleCard name={user.name} description={user.title} pic={user.image} />;
+          return <PeopleCard key={user._id} name={user.name} description={user.title} pic={user.image} />;
         })}
     </>
   );

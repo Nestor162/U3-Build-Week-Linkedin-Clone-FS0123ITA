@@ -13,7 +13,7 @@ import home from "../assets/home.svg";
 import rete from "../assets/rete.svg";
 import work from "../assets/work.svg";
 import msg from "../assets/msg.svg";
-import aziende from "../assets/aziende.svg";
+
 import notifiche from "../assets/notifiche.svg";
 import avatar from "../assets/avatar.png";
 

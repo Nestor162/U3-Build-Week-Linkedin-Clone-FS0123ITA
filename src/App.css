@@ -8,6 +8,7 @@ Blue: #0B66C2
 
 body {
   box-sizing: border-box;
+  background-color: #f3f2ef
 }
 
 .mainProfileContainer {
@@ -19,7 +20,6 @@ body {
 .mainProfileCard {
   border-radius: 10px;
   margin-inline: 1.5rem;
-  padding-inline: 1.5rem
 }
 
 #mainProfilePicture {

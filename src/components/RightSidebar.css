@@ -1,0 +1,18 @@
+a {
+  text-decoration: none;
+  display: inline-block;
+}
+
+hr {
+  margin: 0.15rem;
+}
+
+.r-sidebar {
+  width: 400px;
+  display: flex;
+  margin-inline: auto;
+}
+
+.show-more:hover {
+  background-color: #ebebeb;
+}

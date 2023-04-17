@@ -6,7 +6,7 @@ import FetchUsers from "./FetchUsers";
 
 function RightSidebar() {
   return (
-    <aside className="r-sidebar d-flex flex-column mt-4">
+    <aside className="r-sidebar d-flex flex-column mt-4 d-none d-lg-block">
       <section className="card mb-3 p-3">
         <h5 className="mt-3 fs-6 fw-semibold">People also viewed</h5>
         <FetchUsers nResults={5} />

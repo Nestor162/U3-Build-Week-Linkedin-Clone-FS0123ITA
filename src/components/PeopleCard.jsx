@@ -11,8 +11,8 @@ function PeopleCard({ name, description, pic }) {
         </Col>
         <Col xs={8}>
           <div className="card-body">
-            <h5 className="card-title fw-semibold fs-6">{name}</h5>
-            <p className="card-text">{description}</p>
+            <h5 className="card-title fw-semibold fs-6 mb-1">{name}</h5>
+            <p className="card-text lh-1">{description}</p>
             <Button variant="outline-secondary rounded-pill px-3 py-1">
               <PersonFillAdd /> <span className="pb-1">Connect</span>
             </Button>

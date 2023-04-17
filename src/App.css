@@ -145,7 +145,7 @@ body {
 
 .cardSeparator {
   margin: 0;
-  padding: 0;
+  padding-inline: 1rem;
 }
 
 .activityButton {
@@ -159,13 +159,32 @@ body {
   font-weight: 600;
   margin-right: 0.5rem;
 }
-.nav-link span {
-  font-size: 12px;
-  color: grey;
-}
 
 .activityButton:hover {
   border: inset 2px solid #0b66c2;
   background-color: #c5e0fc;
   color: #0b66c2;
 }
+
+.nav-link span {
+  font-size: 12px;
+  color: grey;
+  width: max-content;
+}
+
+.nav-link {
+  padding: 0;
+}
+
+.profileDropdown {
+  font-size: 12px;
+  padding: 0;
+  color: #666666;
+}
+
+.navbarSeparator {
+  border: 0.5px solid #666666;
+  margin-inline: 0.5rem;
+}
+
+

@@ -1,4 +1,5 @@
 import React from "react";
+
 import {
   Col,
   Container,
@@ -13,7 +14,7 @@ import home from "../assets/home.svg";
 import rete from "../assets/rete.svg";
 import work from "../assets/work.svg";
 import msg from "../assets/msg.svg";
-
+import search from "../assets/search.svg";
 import notifiche from "../assets/notifiche.svg";
 import avatar from "../assets/avatar.png";
 
@@ -28,12 +29,20 @@ const MyNav = () => {
           <Navbar.Toggle className="ms-auto" aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
             <Col xs={2}>
-              <Form className="d-flex bg-light">
+              <Form className="d-flex bg-light position-relative">
                 <Form.Control
                   type="search"
                   placeholder="Search"
-                  className="me-2"
+                  className="me-2 ps-5 pe-5"
                   aria-label="Search"
+                />
+                <img
+                  width={25}
+                  height={25}
+                  src={search}
+                  alt="search"
+                  className="position-absolute"
+                  style={{ left: "8px", top: "8px" }}
                 />
               </Form>
             </Col>

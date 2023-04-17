@@ -18,7 +18,7 @@ body{
 
 .mainProfileCard {
     border-radius: 10px;
-    padding-inline: 1.5rem;
+    margin-inline: 1.5rem;
 }
 
 #mainProfilePicture {

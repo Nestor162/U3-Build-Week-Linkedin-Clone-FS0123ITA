@@ -2,6 +2,7 @@ import React from "react";
 import "./RightSidebar.css";
 import PeopleCard from "./PeopleCard";
 import ShowMore from "./ShowMore";
+import GroupCard from "./GroupCard";
 
 function RightSidebar() {
   return (
@@ -49,12 +50,12 @@ function RightSidebar() {
 
       <section className="card mb-3 p-3">
         <h5 className="mb-3 mt-3 fs-6 fw-semibold"> You might like</h5>
-        <PeopleCard
+        <GroupCard
           name={"React Developers"}
           description={"400.900 members"}
           pic="https://unavatar.io/google/react.dev"
         />
-        <PeopleCard name={"NodeJs"} description={"320.200 members"} pic="https://unavatar.io/google/nodejs.org" />
+        <GroupCard name={"NodeJs"} description={"320.200 members"} pic="https://unavatar.io/google/nodejs.org" />
         <ShowMore />
       </section>
     </aside>

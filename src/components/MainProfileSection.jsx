@@ -19,7 +19,7 @@ const MainProfileSection = () => {
 	}, []);
 
 	return (
-		<Container id="mainProfileContainer">
+		<Container className="mainProfileContainer">
 			<Card className="mainProfileCard">
 				<img src={profileImg} alt="profile" id="mainProfilePicture" />
 				<Card.Img variant="top" src={ProfileCoverImage} />

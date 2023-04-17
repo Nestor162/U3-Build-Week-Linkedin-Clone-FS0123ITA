@@ -10,13 +10,15 @@ body{
     box-sizing: border-box;
 }
 
-#mainProfileContainer {
-    width: 50%;
+.mainProfileContainer {
+    width: 40%;
     position: relative;
+    margin-block: 1.5rem
 }
 
 .mainProfileCard {
     border-radius: 10px;
+    padding-inline: 1.5rem;
 }
 
 #mainProfilePicture {
@@ -24,7 +26,7 @@ body{
     border-radius: 50%;
     border: 3px solid white;
     position: absolute;
-    top: 150px;
+    top: 120px;
     left: 3%;
 }
 
@@ -116,4 +118,44 @@ body{
     border: inset 2px solid #666666;
     background-color: #E0E0E0;
     color: #666666;
+}
+
+.mainCardsTitle {
+    font-weight: 600;
+}
+
+.mainCardsSubtitle {
+    margin-bottom: 0.5rem;
+    font-size: 0.8rem;
+    color: #666666;
+}
+
+.analyticsTitles {
+    font-weight: 600;
+    margin: 0;
+}
+
+.toActivityPage {
+    color: #666666;
+    font-weight: 600;
+    text-align: center;
+    padding: 0.3rem;
+    margin: 0;
+}
+
+.cardSeparator {
+    margin: 0;
+    padding: 0;
+}
+
+.activityButton {
+    text-align: right;
+    border-radius: 20px;
+    border: 1px solid #0B66C2;
+    background-color: white;
+    color: #0B66C2;
+    padding-inline: 20px;
+    padding-block: 3px;
+    font-weight: 600;
+    margin-right: 0.5rem;
 }

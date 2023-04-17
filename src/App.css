@@ -1,0 +1,167 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css");
+
+/*COLOR PALETTE
+Blue: #0B66C2
+*/
+
+/* MAIN PROFILE SECTION */
+
+body{
+    box-sizing: border-box;
+}
+
+.mainProfileContainer {
+    width: 40%;
+    position: relative;
+    margin-block: 1.5rem
+}
+
+.mainProfileCard {
+    border-radius: 10px;
+    margin-inline: 1.5rem;
+}
+
+#mainProfilePicture {
+    height: 35%;
+    border-radius: 50%;
+    border: 3px solid white;
+    position: absolute;
+    top: 120px;
+    left: 3%;
+}
+
+.mainProfileButtonEdit:active {
+    border: none;
+}
+
+.mainProfileEdit {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 1.3rem;
+    padding: 1rem;
+}
+
+#mainProfileBody {
+    padding-inline: 2rem;
+    padding-bottom: 2rem;
+    padding-top: 0;
+}
+
+.mainProfileName {
+    font-size: 1.5rem;
+    font-weight: 700;
+    padding-block: 0;
+}
+
+.mainProfileTitle{
+    font-size: 1rem;
+    font-weight: 400;
+    padding-block: 0;
+    margin: 0;
+}
+
+.mainProfileArea {
+    font-weight: 400;
+    font-size: 0.9rem;
+    color: #666666;
+    padding-block: 0;
+}
+
+.mainProfileContactInfo {
+    color: #0B66C2;
+    font-weight: 600;
+}
+
+.mainProfileButtonOpen {
+    border-radius: 20px;
+    padding-inline: 20px;
+    padding-block: 3px;
+    font-weight: 600;
+    background-color: #0B66C2;
+    color: white;
+    margin-right: 0.5rem;
+}
+
+.mainProfileButtonOpen:hover{
+    background-color: #084787;
+    border: inset 2px solid #084787;
+}
+
+.mainProfileButtonAdd {
+    border-radius: 20px;
+    border: 1px solid #0B66C2;
+    background-color: white;
+    color: #0B66C2;
+    padding-inline: 20px;
+    padding-block: 3px;
+    font-weight: 600;
+    margin-right: 0.5rem;
+}
+
+.mainProfileButtonAdd:hover {
+    border: inset 2px solid #0B66C2;
+    background-color: #C5E0FC;
+    color: #0B66C2;
+}
+
+.mainProfileButtonMore {
+    border-radius: 20px;
+    border: 1px solid #666666;
+    background-color: white;
+    color: #666666;
+    padding-inline: 20px;
+    padding-block: 3px;
+    font-weight: 600;
+}
+
+.mainProfileButtonMore:hover{
+    border: inset 2px solid #666666;
+    background-color: #E0E0E0;
+    color: #666666;
+}
+
+.mainCardsTitle {
+    font-weight: 600;
+}
+
+.mainCardsSubtitle {
+    margin-bottom: 0.5rem;
+    font-size: 0.8rem;
+    color: #666666;
+}
+
+.analyticsTitles {
+    font-weight: 600;
+    margin: 0;
+}
+
+.toActivityPage {
+    color: #666666;
+    font-weight: 600;
+    text-align: center;
+    padding: 0.3rem;
+    margin: 0;
+}
+
+.cardSeparator {
+    margin: 0;
+    padding: 0;
+}
+
+.activityButton {
+    text-align: right;
+    border-radius: 20px;
+    border: 1px solid #0B66C2;
+    background-color: white;
+    color: #0B66C2;
+    padding-inline: 20px;
+    padding-block: 3px;
+    font-weight: 600;
+    margin-right: 0.5rem;
+}
+
+.activityButton:hover {
+    border: inset 2px solid #0B66C2;
+    background-color: #C5E0FC;
+    color: #0B66C2;
+}

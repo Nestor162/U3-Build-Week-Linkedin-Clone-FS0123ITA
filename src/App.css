@@ -11,7 +11,7 @@ body {
 }
 
 .mainProfileContainer {
-  width: 40%;
+  width: 100%;
   position: relative;
   margin-block: 1.5rem;
 }

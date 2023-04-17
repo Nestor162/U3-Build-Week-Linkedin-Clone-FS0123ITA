@@ -1,3 +1,4 @@
+import { Container } from 'react-bootstrap';
 import MainProfileActivity from './MainProfileActivity';
 import MainProfileAnalytics from './MainProfileAnalytics';
 import MainProfileSection from './MainProfileSection';
@@ -5,9 +6,11 @@ import MainProfileSection from './MainProfileSection';
 const MainProfilePage = () => {
 	return (
 		<>
-			<MainProfileSection />
-			<MainProfileAnalytics />
-			<MainProfileActivity />
+			<Container>
+				<MainProfileSection />
+				<MainProfileAnalytics />
+				<MainProfileActivity />
+			</Container>
 		</>
 	);
 };

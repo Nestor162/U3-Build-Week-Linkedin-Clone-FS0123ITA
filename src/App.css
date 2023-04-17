@@ -13,12 +13,13 @@ body {
 .mainProfileContainer {
   width: 100%;
   position: relative;
-  margin-block: 1.5rem;
+  margin-block: 1rem;
 }
 
 .mainProfileCard {
   border-radius: 10px;
   margin-inline: 1.5rem;
+  padding-inline: 1.5rem
 }
 
 #mainProfilePicture {

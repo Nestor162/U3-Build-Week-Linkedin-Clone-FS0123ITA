@@ -1,5 +1,5 @@
 import React from "react";
-import { Alert, Col, Row } from "react-bootstrap";
+import { Alert, Col, Row, Spinner } from "react-bootstrap";
 import { useSelector } from "react-redux";
 
 function ExperiencesListCards() {
@@ -27,8 +27,12 @@ function ExperiencesListCards() {
           );
         })
       ) : (
-        <Alert>There aren't experiences yet</Alert>
+        <div className="d-flex justify-content-center py-4">
+          <Spinner />
+        </div>
+        //
       )}
+      {arrayExperiences.length === 0 && <Alert>There aren't experiences yet</Alert>}
     </>
   );
 }

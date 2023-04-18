@@ -18,10 +18,6 @@ const MainProfileExperiences = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId]);
 
-  // useEffect(() => {
-  //   console.log(arrayExperiences);
-  // });
-
   return (
     <Container className="mainProfileContainer">
       <Card className="mainProfileCard">
@@ -34,32 +30,7 @@ const MainProfileExperiences = () => {
             </div>
           </Container>
 
-          <Card.Text>
-            <div className="d-flex justify-content-center py-4">
-              <Spinner />
-            </div>
-            {arrayExperiences && <ExperiencesListCards />}
-
-            {/* {arrayExperiences && Array.isArray(arrayExperiences) && arrayExperiences.length > 0 ? (
-              arrayExperiences.map(exp => {
-                return (
-                  <Row className="g-0">
-                    <Col xs={4} style={{ maxWidth: "fit-content" }} className="pt-3 ps-3"></Col>
-                    <Col xs={11}>
-                      <div className="card-body">
-                        <h5 className="card-title fw-semibold fs-6 mb-1">{exp.role}</h5>
-                        <p className="card-text lh-0 mb-0">{exp.company}</p>
-                        <small className="text-secondary lh-1">{exp.startDate}</small>
-                        <p>{arrayExperiences.description}</p>
-                      </div>
-                    </Col>
-                  </Row>
-                );
-              })()
-            ) : (
-              <Alert>There aren't experiences yet</Alert>
-            )} */}
-          </Card.Text>
+          <Card.Text>{arrayExperiences && <ExperiencesListCards />}</Card.Text>
         </Card.Body>
         <hr className="cardSeparator" />
         <Button variant="none">

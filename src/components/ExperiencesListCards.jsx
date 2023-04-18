@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 function ExperiencesListCards() {
   const arrayExperiences = useSelector(state => state.experienceList.experiences);
-  const userId = useSelector(state => state.personalProfile.profileId);
+  const userId = useSelector(state => state.personalProfile.id);
 
   const deleteExperience = async id => {
     try {

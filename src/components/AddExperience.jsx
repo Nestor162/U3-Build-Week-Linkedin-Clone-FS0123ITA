@@ -8,7 +8,7 @@ function AddExperience() {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const userId = useSelector(state => state.personalProfile.profileId);
+  const userId = useSelector(state => state.personalProfile.id);
   const handleSave = () => {
     AddExperienceFetch(userId);
     setShow(false);

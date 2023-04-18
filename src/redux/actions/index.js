@@ -8,6 +8,8 @@ export const SET_PROFILE_USERNAME = "SET_PROFILE_USERNAME";
 export const SET_PROFILE_ID = "SET_PROFILE_ID";
 export const SET_PROFILE_IMG = "SET_PROFILE_IMG";
 
+export const GET_EXPERIENCES = "GET_EXPERIENCES";
+
 export const personalProfileFetch = async dispatch => {
   try {
     const response = await fetch("https://striveschool-api.herokuapp.com/api/profile/me", {
@@ -26,6 +28,22 @@ export const personalProfileFetch = async dispatch => {
       dispatch({ type: SET_PROFILE_USERNAME, payload: data.username });
       dispatch({ type: SET_PROFILE_ID, payload: data._id });
       dispatch({ type: SET_PROFILE_IMG, payload: data.image });
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const experienceFetch = async (dispatch, userId) => {
+  try {
+    const response = await fetch(`https://striveschool-api.herokuapp.com/api/profile/${userId}/experiences`, {
+      headers: {
+        authorization: `Bearer ${process.env.REACT_APP_API_KEY}`
+      }
+    });
+    if (response.ok) {
+      const data = await response.json();
+      dispatch({ type: GET_EXPERIENCES, payload: data });
     }
   } catch (error) {
     console.log(error);

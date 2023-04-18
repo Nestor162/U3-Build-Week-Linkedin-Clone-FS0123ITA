@@ -191,3 +191,17 @@ body {
 .content-buttons {
   cursor: pointer;
 }
+
+.delete-button {
+  display: none;
+  right: 0;
+  top: 30%;
+}
+
+.exp-col:hover .delete-button {
+  display: block;
+}
+
+.delete-button:hover {
+  fill: #d42d2d;
+}

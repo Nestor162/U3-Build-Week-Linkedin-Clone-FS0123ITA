@@ -31,3 +31,30 @@ export const personalProfileFetch = async (dispatch) => {
 		console.log(error);
 	}
 };
+
+export const personalProfileEdit = (updatedProfile) => {
+	return async (dispatch) => {
+		try {
+			const response = await fetch('https://striveschool-api.herokuapp.com/api/profile/', {
+				method: 'PUT',
+				headers: {
+					authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(updatedProfile),
+			});
+			if (response.ok) {
+				const updatedProfileData = await response.json();
+				dispatch({ type: SET_PROFILE_NAME, payload: updatedProfileData.name });
+				dispatch({ type: SET_PROFILE_LASTNAME, payload: updatedProfileData.surname });
+				dispatch({ type: SET_PROFILE_EMAIL, payload: updatedProfileData.email });
+				dispatch({ type: SET_PROFILE_BIO, payload: updatedProfileData.bio });
+				dispatch({ type: SET_PROFILE_TITLE, payload: updatedProfileData.title });
+				dispatch({ type: SET_PROFILE_AREA, payload: updatedProfileData.area });
+			}
+		} catch (error) {
+			console.log(error);
+		}
+		console.log('SUBMIT HAS BEEN SUBMITTED');
+	};
+};

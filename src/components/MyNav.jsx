@@ -13,7 +13,7 @@ const MyNav = () => {
 	const profileImg = useSelector((state) => state.personalProfile.profileImg);
 	return (
 		<Navbar bg="light" expand="lg">
-			<Container fluid className="px-5 ">
+			<Container fluid className="px-5">
 				<Container className="d-flex px-5">
 					<Navbar.Brand href="#home">
 						<img src={logo} alt="logo" width={50} height={50} />
@@ -28,36 +28,36 @@ const MyNav = () => {
 						<Nav className="ms-auto my-2 my-lg-0" style={{ maxHeight: '100px' }} navbarScroll>
 							<Nav.Link className="nav-link d-flex flex-column justify-content-center align-items-center" to="/">
 								<span>
-									<img width={30} height={30} src={home} alt="home" />
+									<img width={25} height={25} src={home} alt="home" />
 								</span>
 								<span>Home</span>
 							</Nav.Link>
 							<Nav.Link className="nav-link d-flex flex-column justify-content-center align-items-center" to="/">
 								<span>
-									<img width={30} height={30} src={rete} alt="rete" />
+									<img width={25} height={25} src={rete} alt="rete" />
 								</span>
 								<span>My network</span>
 							</Nav.Link>
 							<Nav.Link className="nav-link d-flex flex-column justify-content-center align-items-center" to="/">
 								<span>
-									<img width={30} height={30} src={work} alt="work" />
+									<img width={25} height={25} src={work} alt="work" />
 								</span>
 								<span>Jobs</span>
 							</Nav.Link>
 							<Nav.Link className="nav-link d-flex flex-column justify-content-center align-items-center" to="/">
 								<span>
-									<img width={30} height={30} src={msg} alt="msg" />
+									<img width={25} height={25} src={msg} alt="msg" />
 								</span>
 								<span>Messagging</span>
 							</Nav.Link>
 							<Nav.Link className="nav-link d-flex flex-column justify-content-center align-items-center" to="/">
 								<span>
-									<img width={30} height={30} src={notifiche} alt="notifiche" />
+									<img width={25} height={25} src={notifiche} alt="notifiche" />
 								</span>
 								<span>Notifications</span>
 							</Nav.Link>
 							<div>
-								<img className="rounded-circle" src={profileImg} alt="avatar" width={30} height={30} />
+								<img className="rounded-circle" src={profileImg} alt="avatar" width={25} height={25} />
 								<NavDropdown className="profileDropdown" title="Me" id="navbarScrollingDropdown">
 									<Dropdown.Item href="#/action-1">Action</Dropdown.Item>
 									<Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
@@ -72,8 +72,8 @@ const MyNav = () => {
 									data-supported-dps="24x24"
 									fill="currentColor"
 									class="mercado-match"
-									width="30"
-									height="30"
+									width="25"
+									height="25"
 									focusable="false"
 								>
 									<path d="M3 3h4v4H3zm7 4h4V3h-4zm7-4v4h4V3zM3 14h4v-4H3zm7 0h4v-4h-4zm7 0h4v-4h-4zM3 21h4v-4H3zm7 0h4v-4h-4zm7 0h4v-4h-4z"></path>

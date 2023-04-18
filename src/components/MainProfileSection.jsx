@@ -1,15 +1,19 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Button, Card, Container } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import ProfileCoverImage from '../assets/images/profileCoverImage.webp';
 import { personalProfileFetch } from '../redux/actions';
+import EditProfileModal from './EditProfileModal';
 
 const MainProfileSection = () => {
-	const profileName = useSelector((state) => state.personalProfile.profileName);
-	const profileLastname = useSelector((state) => state.personalProfile.profileLastname);
-	const profileTitle = useSelector((state) => state.personalProfile.profileTitle);
-	const profileArea = useSelector((state) => state.personalProfile.profileArea);
-	const profileImg = useSelector((state) => state.personalProfile.profileImg);
+	const profileName = useSelector((state) => state.personalProfile.name);
+	const profileLastname = useSelector((state) => state.personalProfile.surname);
+	const profileTitle = useSelector((state) => state.personalProfile.title);
+	const profileArea = useSelector((state) => state.personalProfile.area);
+	const profileImg = useSelector((state) => state.personalProfile.img);
+
+	// const updatedProfile = useSelector((state) => state.updatedProfile.content);
+	// console.log(updatedProfile);
 
 	const dispatch = useDispatch();
 
@@ -18,15 +22,18 @@ const MainProfileSection = () => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
+	const [modalShow, setModalShow] = useState(false);
+
 	return (
 		<Container className="mainProfileContainer">
 			<Card className="mainProfileCard">
 				<img src={profileImg} alt="profile" id="mainProfilePicture" />
 				<Card.Img variant="top" src={ProfileCoverImage} />
 
-				<Button variant="none" className="mainProfileButtonEdit">
+				<Button variant="none" className="mainProfileButtonEdit" onClick={() => setModalShow(true)}>
 					<i className="bi bi-pencil mainProfileEdit"></i>
 				</Button>
+				<EditProfileModal show={modalShow} onHide={() => setModalShow(false)} />
 
 				<Card.Body id="mainProfileBody">
 					<Card.Title className="mainProfileName">

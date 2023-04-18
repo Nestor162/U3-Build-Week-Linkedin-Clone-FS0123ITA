@@ -11,15 +11,15 @@ import {
 } from '../actions';
 
 const initialState = {
-	profileName: '',
-	profileLastname: '',
-	profileEmail: '',
-	profileBio: '',
-	profileTitle: '',
-	profileArea: '',
-	profileUsername: '',
-	profileId: '',
-	profileImg: '',
+	name: '',
+	surname: '',
+	email: '',
+	bio: '',
+	title: '',
+	area: '',
+	username: '',
+	id: '',
+	img: '',
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -27,47 +27,47 @@ const profileReducer = (state = initialState, action) => {
 		case SET_PROFILE_NAME:
 			return {
 				...state,
-				profileName: action.payload,
+				name: action.payload,
 			};
 		case SET_PROFILE_LASTNAME:
 			return {
 				...state,
-				profileLastname: action.payload,
+				surname: action.payload,
 			};
 		case SET_PROFILE_EMAIL:
 			return {
 				...state,
-				profileEmail: action.payload,
+				email: action.payload,
 			};
 		case SET_PROFILE_BIO:
 			return {
 				...state,
-				profileBio: action.payload,
+				bio: action.payload,
 			};
 		case SET_PROFILE_TITLE:
 			return {
 				...state,
-				profileTitle: action.payload,
+				title: action.payload,
 			};
 		case SET_PROFILE_AREA:
 			return {
 				...state,
-				profileArea: action.payload,
+				area: action.payload,
 			};
 		case SET_PROFILE_USERNAME:
 			return {
 				...state,
-				profileUsername: action.payload,
+				username: action.payload,
 			};
 		case SET_PROFILE_ID:
 			return {
 				...state,
-				profileId: action.payload,
+				id: action.payload,
 			};
 		case SET_PROFILE_IMG:
 			return {
 				...state,
-				profileImg: action.payload,
+				img: action.payload,
 			};
 		default:
 			return state;

@@ -4,7 +4,7 @@ const MainProfileActivity = () => {
 	return (
 		<Container className="mainProfileContainer">
 			<Card className="mainProfileCard">
-				<Card.Body>
+				<Card.Body className="px-5">
 					<Container className="d-flex justify-content-between p-0">
 						<Card.Title className="mainCardsTitle">Activity</Card.Title>
 						<Button className="activityButton"> Start a post</Button>
@@ -15,13 +15,13 @@ const MainProfileActivity = () => {
 						<p className="analyticsTitles">You haven't posted lately</p>
 						<p>Recent posts you share or comment on will be displayed here</p>
 					</Card.Text>
+					<hr className="cardSeparator" />
+					<Button variant="none">
+						<p className="toActivityPage">
+							Show all activity <i class="bi bi-arrow-right"></i>
+						</p>
+					</Button>
 				</Card.Body>
-				<hr className="cardSeparator" />
-				<Button variant="none">
-					<p className="toActivityPage">
-						Show all activity <i class="bi bi-arrow-right"></i>
-					</p>
-				</Button>
 			</Card>
 		</Container>
 	);

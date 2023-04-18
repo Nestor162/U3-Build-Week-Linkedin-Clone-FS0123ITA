@@ -4,7 +4,7 @@ const MainProfileAnalytics = () => {
 	return (
 		<Container className="mainProfileContainer">
 			<Card className="mainProfileCard">
-				<Card.Body>
+				<Card.Body className="px-5">
 					<Card.Title className="mainCardsTitle">Analytics</Card.Title>
 					<Card.Subtitle className="mainCardsSubtitle">
 						<i class="bi bi-eye-fill"></i> {''}Private to you

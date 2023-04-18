@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { Button, Container, Form } from "react-bootstrap";
+import { Button, Card, Container, Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { addImageAsync } from "../redux/actions";
 
@@ -27,26 +27,29 @@ function ImageProfile() {
 
   return (
     <>
-      <Container>
-        <Form>
-          <Form.Group>
-            <label for="avatar">Choose a profile picture:</label>
-            <Form.Control
-              type="file"
-              rows={4}
-              onChange={(e) => addImageEventHandler(e)}
-            />
-            {console.log(image, "ciao")}
-          </Form.Group>
-        </Form>
-
+      <Container className="Card-change-Profile">
+        <Card>
+          <Form>
+            <Form.Group>
+              <label className="Label-Image" for="avatar">
+                Choose a profile picture:
+              </label>
+              <Form.Control
+                type="file"
+                rows={4}
+                onChange={(e) => addImageEventHandler(e)}
+              />
+              {console.log(image, "ciao")}
+            </Form.Group>
+          </Form>
+        </Card>
         <>
           <Button variant="secondary" className="mt-3">
             Close
           </Button>
           <Button
             variant="primary"
-            className="mt-3"
+            className="mt-3 mx-2"
             onClick={(e) => {
               e.preventDefault();
               handleClose();

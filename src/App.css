@@ -169,3 +169,12 @@ body {
   background-color: #c5e0fc;
   color: #0b66c2;
 }
+
+.Label-Image {
+  text-align: center;
+  font-size: medium;
+}
+
+.Card-change-Profile {
+  width: 100%;
+}

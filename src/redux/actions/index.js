@@ -7,31 +7,14 @@ export const SET_PROFILE_AREA = "SET_PROFILE_AREA";
 export const SET_PROFILE_USERNAME = "SET_PROFILE_USERNAME";
 export const SET_PROFILE_ID = "SET_PROFILE_ID";
 export const SET_PROFILE_IMG = "SET_PROFILE_IMG";
-export const ADD_IMAGE = "ADD_IMAGE";
-export const GET_POSTS = "GET_POSTS";
-export const ADD_POST = "ADD_POST";
-export const POST_IMAGE = "POST_IMAGE";
 
-const getOptions = (method) => {
-  return {
-    method: method,
-    headers: {
-      Authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
-      "Content-Type": "application/json",
-    },
-  };
-};
-
-export const personalProfileFetch = async (dispatch) => {
+export const personalProfileFetch = async dispatch => {
   try {
-    const response = await fetch(
-      "https://striveschool-api.herokuapp.com/api/profile/me",
-      {
-        headers: {
-          authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
-        },
+    const response = await fetch("https://striveschool-api.herokuapp.com/api/profile/me", {
+      headers: {
+        authorization: `Bearer ${process.env.REACT_APP_API_KEY}`
       }
-    );
+    });
     if (response.ok) {
       const data = await response.json();
       dispatch({ type: SET_PROFILE_NAME, payload: data.name });
@@ -47,115 +30,4 @@ export const personalProfileFetch = async (dispatch) => {
   } catch (error) {
     console.log(error);
   }
-};
-
-export const addImageAsync = (data, userId) => {
-  let header = {
-    method: "POST",
-    headers: {
-      authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
-    },
-  };
-  return async (dispatch, getState) => {
-    try {
-      let res = await fetch(
-        `https://striveschool-api.herokuapp.com/api/profile/${userId}/picture`,
-        { ...header, body: data }
-      );
-
-      if (res.ok) {
-        let addedImage = await res.json();
-
-        console.log(addedImage);
-
-        dispatch({
-          type: ADD_IMAGE,
-          payload: addedImage,
-        });
-      } else {
-        console.log("error");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-};
-
-// export const getPostAsync = () => {
-//   return async (dispatch, getState) => {
-//     try {
-//       let res = await fetch(
-//         `https://striveschool-api.herokuapp.com/api/posts/ `,
-//         getOptions("GET") //dichiaro getOptions per non doverlo ripetere per ogni metodo che vogliamo usare
-//       );
-
-//       if (res.ok) {
-//         let fetchedPost = await res.json();
-//         console.log(fetchedPost);
-//         dispatch({
-//           type: GET_POSTS,
-//           payload: fetchedPost.sort(
-//             (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-//           ),
-//         });
-//       } else {
-//         console.log("error");
-//       }
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// };
-
-export const addPostAsync = (handleClose, data) => {
-  return async (dispatch, getState) => {
-    try {
-      let res = await fetch(
-        `https://striveschool-api.herokuapp.com/api/posts/:postId`,
-        { ...getOptions("POST"), body: JSON.stringify(data) }
-      );
-
-      if (res.ok) {
-        let addedPost = await res.json();
-
-        console.log(addedPost);
-        handleClose();
-        dispatch({
-          type: ADD_POST,
-          payload: addedPost,
-        });
-      } else {
-        console.log("error");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-};
-
-export const personalProfileEdit = (updatedProfile) => {
-	return async (dispatch) => {
-		try {
-			const response = await fetch('https://striveschool-api.herokuapp.com/api/profile/', {
-				method: 'PUT',
-				headers: {
-					authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify(updatedProfile),
-			});
-			if (response.ok) {
-				const updatedProfileData = await response.json();
-				dispatch({ type: SET_PROFILE_NAME, payload: updatedProfileData.name });
-				dispatch({ type: SET_PROFILE_LASTNAME, payload: updatedProfileData.surname });
-				dispatch({ type: SET_PROFILE_EMAIL, payload: updatedProfileData.email });
-				dispatch({ type: SET_PROFILE_BIO, payload: updatedProfileData.bio });
-				dispatch({ type: SET_PROFILE_TITLE, payload: updatedProfileData.title });
-				dispatch({ type: SET_PROFILE_AREA, payload: updatedProfileData.area });
-			}
-		} catch (error) {
-			console.log(error);
-		}
-		console.log('SUBMIT HAS BEEN SUBMITTED');
-	};
 };

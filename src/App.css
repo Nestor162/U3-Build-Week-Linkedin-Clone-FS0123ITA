@@ -188,6 +188,19 @@ body {
   margin-inline: 0.5rem;
 }
 
+.content-buttons {
+  cursor: pointer;
+}
+
+.delete-button {
+  display: none;
+  right: 0;
+  top: 30%;
+}
+
+.exp-col:hover .delete-button {
+  display: block;
+}
 .button-close {
   margin-top: 15px;
   border-radius: 20px;
@@ -213,4 +226,7 @@ body {
   border: inset 2px solid #0b66c2;
   background-color: #c5e0fc;
   color: #0b66c2;
+}
+.delete-button:hover {
+  fill: #d42d2d;
 }

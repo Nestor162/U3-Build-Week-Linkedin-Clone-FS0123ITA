@@ -4,7 +4,7 @@ const MainProfileActivity = () => {
 	return (
 		<Container className="mainProfileContainer">
 			<Card className="mainProfileCard">
-				<Card.Body className="px-5">
+				<Card.Body className="px-4">
 					<Container className="d-flex justify-content-between p-0">
 						<Card.Title className="mainCardsTitle">Activity</Card.Title>
 						<Button className="activityButton"> Start a post</Button>

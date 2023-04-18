@@ -59,7 +59,7 @@ export const addImageAsync = (data, userId) => {
   return async (dispatch, getState) => {
     try {
       let res = await fetch(
-        `https://striveschool-api.herokuapp.com/api/profile/${userId}/picture`,
+        `https://striveschool-api.herokuapp.com/api/profile/${id}/picture`,
         { ...header, body: data }
       );
 

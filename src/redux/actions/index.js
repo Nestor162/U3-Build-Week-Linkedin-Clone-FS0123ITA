@@ -17,6 +17,16 @@ export const POST_IMAGE = "POST_IMAGE";
 
 export const GET_EXPERIENCES = "GET_EXPERIENCES";
 
+const getOptions = (method) => {
+  return {
+    method: method,
+    headers: {
+      Authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
+      "Content-Type": "application/json",
+    },
+  };
+};
+
 export const personalProfileFetch = async (dispatch) => {
   try {
     const response = await fetch(

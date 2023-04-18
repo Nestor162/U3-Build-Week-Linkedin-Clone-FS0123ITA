@@ -8,7 +8,7 @@ Blue: #0B66C2
 
 body {
   box-sizing: border-box;
-  background-color: #f3f2ef
+  background-color: #f3f2ef;
 }
 
 .mainProfileContainer {
@@ -188,4 +188,6 @@ body {
   margin-inline: 0.5rem;
 }
 
-
+.content-buttons {
+  cursor: pointer;
+}

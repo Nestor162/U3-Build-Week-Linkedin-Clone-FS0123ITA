@@ -10,7 +10,7 @@ import notifiche from '../assets/notifiche.svg';
 import { useSelector } from 'react-redux';
 
 const MyNav = () => {
-	const profileImg = useSelector((state) => state.personalProfile.profileImg);
+	const profileImg = useSelector((state) => state.personalProfile.img);
 	return (
 		<Navbar bg="light" expand="lg">
 			<Container fluid className="px-5">

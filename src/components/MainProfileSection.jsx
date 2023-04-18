@@ -43,6 +43,7 @@ const MainProfileSection = () => {
 					<Card.Text className="mainProfileArea">
 						{profileArea} - <span className="mainProfileContactInfo"> Contact info </span>
 					</Card.Text>
+					<Card.Text className="mainProfileContactInfo"> 201 contacts </Card.Text>
 					<Button className="mainProfileButtonOpen">Open to</Button>
 					<Button className="mainProfileButtonAdd">Add profile section</Button>
 					<Button className="mainProfileButtonMore">More</Button>

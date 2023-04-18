@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Button, Container, Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { addImageAsync } from "../redux/actions";
 
@@ -8,7 +8,7 @@ function ImageProfile() {
   const dispatch = useDispatch();
   const [image, setImage] = useState([]);
   const formData = new FormData();
-  const userId = useSelector((state) => state.profile.data._id);
+  const userId = useSelector((state) => state.personalProfile.id);
   const [show, setShow] = useState(false);
   // const [image, setImage] = useState("")
 
@@ -27,7 +27,7 @@ function ImageProfile() {
 
   return (
     <>
-      <div>
+      <Container>
         <Form>
           <Form.Group>
             <label for="avatar">Choose a profile picture:</label>
@@ -41,9 +41,12 @@ function ImageProfile() {
         </Form>
 
         <>
-          <Button variant="secondary">Close</Button>
+          <Button variant="secondary" className="mt-3">
+            Close
+          </Button>
           <Button
             variant="primary"
+            className="mt-3"
             onClick={(e) => {
               e.preventDefault();
               handleClose();
@@ -54,7 +57,7 @@ function ImageProfile() {
             Upload
           </Button>
         </>
-      </div>
+      </Container>
     </>
   );
 }

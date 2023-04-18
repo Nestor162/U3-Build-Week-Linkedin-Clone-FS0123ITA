@@ -12,6 +12,16 @@ export const GET_POSTS = "GET_POSTS";
 export const ADD_POST = "ADD_POST";
 export const POST_IMAGE = "POST_IMAGE";
 
+const getOptions = (method) => {
+  return {
+    method: method,
+    headers: {
+      Authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
+      "Content-Type": "application/json",
+    },
+  };
+};
+
 export const personalProfileFetch = async (dispatch) => {
   try {
     const response = await fetch(
@@ -61,6 +71,58 @@ export const addImageAsync = (data, userId) => {
         dispatch({
           type: ADD_IMAGE,
           payload: addedImage,
+        });
+      } else {
+        console.log("error");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const getPostAsync = () => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await fetch(
+        `https://striveschool-api.herokuapp.com/api/posts/ `,
+        getOptions("GET") //dichiaro grtOptions per non doverlo ripetere per ogni metodo che vogliamo usare
+      );
+
+      if (res.ok) {
+        let fetchedPost = await res.json();
+        console.log(fetchedPost);
+        dispatch({
+          type: GET_POSTS,
+          payload: fetchedPost.sort(
+            (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+          ),
+        });
+      } else {
+        console.log("error");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const addPostAsync = (handleClose, data) => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await fetch(
+        `https://striveschool-api.herokuapp.com/api/posts/`,
+        { ...getOptions("POST"), body: JSON.stringify(data) }
+      );
+
+      if (res.ok) {
+        let addedPost = await res.json();
+
+        console.log(addedPost);
+        handleClose();
+        dispatch({
+          type: ADD_POST,
+          payload: addedPost,
         });
       } else {
         console.log("error");

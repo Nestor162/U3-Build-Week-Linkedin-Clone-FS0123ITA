@@ -37,46 +37,31 @@ const EditProfileModal = (props) => {
 				<Modal.Body>
 					<Form className="px-4">
 						<Form.Group className="mb-3" controlId="formGroupEmail">
-							<Form.Label>First name*</Form.Label>
-							<Form.Control type="text" placeholder={name} required onChange={(e) => dispatch({ type: SET_PROFILE_NAME, payload: e.target.value })} />
+							<Form.Label>First name</Form.Label>
+							<Form.Control type="text" placeholder={name} onChange={(e) => dispatch({ type: SET_PROFILE_NAME, payload: e.target.value })} />
 						</Form.Group>
 						<Form.Group className="mb-3" controlId="formGroupPassword">
-							<Form.Label>Last name*</Form.Label>
-							<Form.Control
-								type="text"
-								placeholder={surname}
-								required
-								onChange={(e) => dispatch({ type: SET_PROFILE_LASTNAME, payload: e.target.value })}
-							/>
+							<Form.Label>Last name</Form.Label>
+							<Form.Control type="text" placeholder={surname} onChange={(e) => dispatch({ type: SET_PROFILE_LASTNAME, payload: e.target.value })} />
 						</Form.Group>
 						<Form.Group className="mb-3" controlId="formGroupPassword">
-							<Form.Label>Headline*</Form.Label>
-							<Form.Control
-								type="text"
-								placeholder={title}
-								required
-								onChange={(e) => dispatch({ type: SET_PROFILE_TITLE, payload: e.target.value })}
-							/>
+							<Form.Label>Headline</Form.Label>
+							<Form.Control type="text" placeholder={title} onChange={(e) => dispatch({ type: SET_PROFILE_TITLE, payload: e.target.value })} />
 						</Form.Group>
 						<Form.Group className="mb-3" controlId="formGroupPassword">
-							<Form.Label>Bio*</Form.Label>
-							<Form.Control type="text" placeholder={bio} required onChange={(e) => dispatch({ type: SET_PROFILE_BIO, payload: e.target.value })} />
+							<Form.Label>Bio</Form.Label>
+							<Form.Control type="text" placeholder={bio} onChange={(e) => dispatch({ type: SET_PROFILE_BIO, payload: e.target.value })} />
 						</Form.Group>
 						<Form.Group className="mb-3" controlId="formGroupPassword">
-							<Form.Label>Location*</Form.Label>
-							<Form.Control type="text" placeholder={area} required onChange={(e) => dispatch({ type: SET_PROFILE_AREA, payload: e.target.value })} />
+							<Form.Label>Location</Form.Label>
+							<Form.Control type="text" placeholder={area} onChange={(e) => dispatch({ type: SET_PROFILE_AREA, payload: e.target.value })} />
 						</Form.Group>
 
 						<p className="fw-bold p-0 m-0">Contact Info</p>
 
 						<Form.Group className="mb-3" controlId="formGroupPassword">
-							<Form.Label>Email*</Form.Label>
-							<Form.Control
-								type="email"
-								placeholder={email}
-								required
-								onChange={(e) => dispatch({ type: SET_PROFILE_EMAIL, payload: e.target.value })}
-							/>
+							<Form.Label>Email</Form.Label>
+							<Form.Control type="email" placeholder={email} onChange={(e) => dispatch({ type: SET_PROFILE_EMAIL, payload: e.target.value })} />
 						</Form.Group>
 						<Button onClick={props.onHide}>Close</Button>
 						<Button onClick={handleSubmit}>Save</Button>

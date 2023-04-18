@@ -9,7 +9,7 @@ import AddExperience from "./AddExperience";
 const MainProfileExperiences = () => {
   const dispatch = useDispatch();
 
-  const userId = useSelector(state => state.personalProfile.profileId);
+  const userId = useSelector(state => state.personalProfile.id);
   const arrayExperiences = useSelector(state => state.experienceList.experiences);
 
   useEffect(() => {

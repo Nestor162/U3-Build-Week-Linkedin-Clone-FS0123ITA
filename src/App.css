@@ -170,11 +170,29 @@ body {
   color: #0b66c2;
 }
 
-.Label-Image {
-  text-align: center;
-  font-size: medium;
+.button-close {
+  margin-top: 15px;
+  border-radius: 20px;
+  border: 1px solid #0b66c2;
+  background-color: white;
+  color: #0b66c2;
+  padding-inline: 20px;
+  padding-block: 3px;
+  font-weight: 600;
+  margin-right: 0.5rem;
 }
-
-.Card-change-Profile {
-  width: 100%;
+.button-upload {
+  border-radius: 20px;
+  margin-top: 15px;
+  margin-right: 0.5rem;
+}
+.button-close:hover {
+  border: inset 2px solid #0b66c2;
+  background-color: #c5e0fc;
+  color: #0b66c2;
+}
+.button-upload:hover {
+  border: inset 2px solid #0b66c2;
+  background-color: #c5e0fc;
+  color: #0b66c2;
 }

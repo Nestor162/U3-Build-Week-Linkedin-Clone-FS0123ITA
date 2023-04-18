@@ -9,6 +9,7 @@ const ImageProfile = () => {
 	const [image, setImage] = useState([]);
 	const formData = new FormData();
 	const userId = useSelector((state) => state.personalProfile.id);
+
 	const [show, setShow] = useState(false);
 	// const [image, setImage] = useState("")
 
@@ -32,7 +33,6 @@ const ImageProfile = () => {
 					<Container className="d-flex justify-content-between ">
 						<Card.Title className="mainCardsTitle mt-3">Raccomended For You</Card.Title>
 					</Container>
-
 					<Card.Subtitle className="mainCardsSubtitle mt-2 mx-1">
 						{' '}
 						<svg
@@ -67,7 +67,7 @@ const ImageProfile = () => {
 								Choose a profile picture:
 							</label>
 							<Form.Control type="file" rows={4} onChange={(e) => addImageEventHandler(e)} />
-							{console.log(image, 'ciao')}
+							{/* {console.log(image, 'ciao')} */}
 						</Form.Group>
 					</Form>
 					<Button variant="secondary" className="button-close">
@@ -81,6 +81,7 @@ const ImageProfile = () => {
 							handleClose();
 							formData.append('profile', image);
 							dispatch(addImageAsync(formData, userId));
+							console.log(formData);
 						}}
 					>
 						Upload

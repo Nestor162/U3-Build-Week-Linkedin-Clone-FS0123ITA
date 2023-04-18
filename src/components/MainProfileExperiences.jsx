@@ -1,9 +1,10 @@
 import { useEffect } from "react";
-import { Button, Card, Container, Spinner } from "react-bootstrap";
-import { Pencil, Plus } from "react-bootstrap-icons";
+import { Button, Card, Container } from "react-bootstrap";
+import { Pencil } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { experienceFetch } from "../redux/actions";
 import ExperiencesListCards from "./ExperiencesListCards";
+import AddExperience from "./AddExperience";
 
 const MainProfileExperiences = () => {
   const dispatch = useDispatch();
@@ -25,7 +26,7 @@ const MainProfileExperiences = () => {
           <Container className="d-flex justify-content-between p-0">
             <Card.Title className="mainCardsTitle">Experience</Card.Title>
             <div>
-              <Plus size={35} className="content-buttons me-4" />
+              <AddExperience />
               <Pencil size={20} className="content-buttons me-2" />
             </div>
           </Container>

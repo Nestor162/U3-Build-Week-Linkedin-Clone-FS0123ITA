@@ -87,9 +87,8 @@ function ExperiencesListCards() {
           );
         })
       ) : (
-        <Alert>There aren't experiences yet</Alert>
+        <Alert className="mt-4">There aren't experiences yet</Alert>
       )}
-      {/* {arrayExperiences.length === 0 && <Alert>There aren't experiences yet</Alert>} */}
     </>
   );
 }

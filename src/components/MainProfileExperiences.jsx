@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { experienceFetch } from "../redux/actions";
 import ExperiencesListCards from "./ExperiencesListCards";
 import AddExperience from "./AddExperience";
+import { Link } from "react-router-dom";
 
 const MainProfileExperiences = () => {
   const dispatch = useDispatch();
@@ -45,7 +46,8 @@ const MainProfileExperiences = () => {
         <hr className="cardSeparator" />
         <Button variant="none">
           <p className="toActivityPage">
-            Show all {arrayExperiences.length} experiences <i class="bi bi-arrow-right"></i>
+            <Link to={"/experiences"}> Show all {arrayExperiences.length} experiences</Link>{" "}
+            <i class="bi bi-arrow-right"></i>
           </p>
         </Button>
       </Card>

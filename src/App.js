@@ -9,6 +9,7 @@ import RightSidebar from "./components/RightSidebar";
 import MyNav from "./components/MyNav";
 import { Container } from "react-bootstrap";
 import Footer from "./components/Footer";
+import ExperiencesDetailsPage from "./components/ExperiencesDetailsPage";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <Container className="d-flex">
         <Routes>
           <Route path="/me" element={<MainProfilePage />} />
+          <Route path="/experiences" element={<ExperiencesDetailsPage />} />
         </Routes>
         <RightSidebar />
       </Container>

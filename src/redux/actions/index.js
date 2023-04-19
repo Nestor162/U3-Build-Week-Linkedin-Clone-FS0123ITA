@@ -17,6 +17,8 @@ export const POST_IMAGE = 'POST_IMAGE';
 
 export const GET_EXPERIENCES = 'GET_EXPERIENCES';
 
+export const SET_LOADING = 'SET_LOADING';
+
 const getOptions = (method) => {
 	return {
 		method: method,

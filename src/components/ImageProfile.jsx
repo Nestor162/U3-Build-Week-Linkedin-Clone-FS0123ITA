@@ -32,6 +32,16 @@ function ImageProfile() {
           <Modal.Title>Upload Image</Modal.Title>
         </Modal.Header>
         <Modal.Body>
+          <p className="text-center text-dark-emphasis py-4 fs-4">
+            Your photo doesn't have to be a close-up of you! But something that
+            represents you.
+          </p>
+
+          <p className="text-center text-dark-emphasis py-4">
+            We ask LinkedIn users to use their real identities, so take or
+            upload a picture of yourself.
+            <br /> Then crop it, apply filters and refine it however you want.
+          </p>
           <Form>
             <Form.Group>
               <Form.Control
@@ -45,10 +55,14 @@ function ImageProfile() {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" /*onClick={props.handleClose}*/>
+          <Button
+            className="mt-2 mx-2"
+            variant="secondary" /*onClick={props.handleClose}*/
+          >
             Close
           </Button>
           <Button
+            className="mt-2"
             variant="primary"
             onClick={(e) => {
               e.preventDefault();

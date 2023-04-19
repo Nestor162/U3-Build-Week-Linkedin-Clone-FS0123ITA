@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { Button, Card, Container, Spinner } from "react-bootstrap";
-import { Pencil } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { experienceFetch } from "../redux/actions";
 import ExperiencesListCards from "./ExperiencesListCards";

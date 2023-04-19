@@ -41,7 +41,7 @@ function ExperiencesListCards() {
   return (
     <>
       {arrayExperiences && arrayExperiences.length > 0 ? (
-        arrayExperiences.map(exp => {
+        arrayExperiences.slice(0, 5).map(exp => {
           return (
             <Row className="g-0">
               <Col xs={4} style={{ maxWidth: "fit-content" }} className="pt-3 ps-3">
@@ -78,8 +78,10 @@ function ExperiencesListCards() {
                   <h5 className="card-title fw-semibold fs-6 mb-1">{exp.description}</h5>
                   <p className="card-text lh-0 mb-0">{exp.company}</p>
                   <small className="text-secondary lh-1">
-                    {exp.startDate} - {exp.endDate}
+                    {new Date(exp.startDate).toLocaleDateString()} -{" "}
+                    {exp.endDate ? new Date(exp.endDate).toLocaleDateString() : "Present"}
                   </small>
+
                   <p>{arrayExperiences.description}</p>
                 </div>
               </Col>

@@ -16,27 +16,25 @@ export const ADD_POST = "ADD_POST";
 export const POST_IMAGE = "POST_IMAGE";
 
 export const GET_EXPERIENCES = "GET_EXPERIENCES";
+export const SET_LOADING = "SET_LOADING";
 
-const getOptions = (method) => {
+const getOptions = method => {
   return {
     method: method,
     headers: {
       Authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
-      "Content-Type": "application/json",
-    },
+      "Content-Type": "application/json"
+    }
   };
 };
 
-export const personalProfileFetch = async (dispatch) => {
+export const personalProfileFetch = async dispatch => {
   try {
-    const response = await fetch(
-      "https://striveschool-api.herokuapp.com/api/profile/me",
-      {
-        headers: {
-          authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
-        },
+    const response = await fetch("https://striveschool-api.herokuapp.com/api/profile/me", {
+      headers: {
+        authorization: `Bearer ${process.env.REACT_APP_API_KEY}`
       }
-    );
+    });
     if (response.ok) {
       const data = await response.json();
       dispatch({ type: SET_PROFILE_NAME, payload: data.name });
@@ -54,27 +52,64 @@ export const personalProfileFetch = async (dispatch) => {
   }
 };
 
-export const addImageAsync = (data, userId) => {
-  const url = `https://striveschool-api.herokuapp.com/api/profile/${userId}/picture`;
-  let header = {
-    method: "POST",
-    headers: {
-      authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
-    },
-  };
-  return async (dispatch, getState) => {
+export const personalProfileEdit = updatedProfile => {
+  return async dispatch => {
     try {
-      let res = await fetch(url, { ...header, body: data });
+      const response = await fetch("https://striveschool-api.herokuapp.com/api/profile/", {
+        method: "PUT",
+        headers: {
+          authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(updatedProfile)
+      });
+      if (response.ok) {
+        const updatedProfileData = await response.json();
+        dispatch({ type: SET_PROFILE_NAME, payload: updatedProfileData.name });
+        dispatch({ type: SET_PROFILE_LASTNAME, payload: updatedProfileData.surname });
+        dispatch({ type: SET_PROFILE_EMAIL, payload: updatedProfileData.email });
+        dispatch({ type: SET_PROFILE_BIO, payload: updatedProfileData.bio });
+        dispatch({ type: SET_PROFILE_TITLE, payload: updatedProfileData.title });
+        dispatch({ type: SET_PROFILE_AREA, payload: updatedProfileData.area });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+    console.log("SUBMIT HAS BEEN SUBMITTED");
+  };
+};
 
+export const experienceFetch = async (dispatch, userId) => {
+  try {
+    const response = await fetch(`https://striveschool-api.herokuapp.com/api/profile/${userId}/experiences`, {
+      headers: {
+        authorization: `Bearer ${process.env.REACT_APP_API_KEY}`
+      }
+    });
+    if (response.ok) {
+      const data = await response.json();
+      dispatch({ type: GET_EXPERIENCES, payload: data });
+      dispatch({ type: SET_LOADING, payload: false });
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const addImageAsync = (formData, userId) => {
+  return async dispatch => {
+    try {
+      let res = await fetch(`https://striveschool-api.herokuapp.com/api/profile/${userId}/picture`, {
+        method: "POST",
+        headers: {
+          authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
+          "Content-Type": "application/json"
+        },
+        body: formData
+      });
       if (res.ok) {
         let addedImage = await res.json();
-
-        console.log(addedImage);
-
-        dispatch({
-          type: ADD_IMAGE,
-          payload: addedImage,
-        });
+        dispatch({ type: ADD_IMAGE, payload: addedImage });
       } else {
         console.log("error");
       }
@@ -151,7 +186,7 @@ export const addPostAsync = (handleClose, data) => {
         dispatch({
           type: ADD_POST,
 
-          payload: addedPost,
+          payload: addedPost
         });
       } else {
         console.log("error");
@@ -161,3 +196,15 @@ export const addPostAsync = (handleClose, data) => {
     }
   };
 };
+
+// const getOptions = (method) => {
+
+// const getOptions = method => {
+//   return {
+//     method: method,
+//     headers: {
+//       Authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
+//       "Content-Type": "application/json",
+//     },
+//   };
+// };

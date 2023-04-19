@@ -230,3 +230,7 @@ body {
 .delete-button:hover {
   fill: #d42d2d;
 }
+
+.edit-button:hover {
+  fill: #4ed42d;
+}

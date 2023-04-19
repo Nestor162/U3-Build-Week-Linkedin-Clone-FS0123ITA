@@ -7,8 +7,6 @@ import { experienceFetch } from '../redux/actions';
 function ExperiencesListCards() {
 	const arrayExperiences = useSelector((state) => state.experienceList.experiences);
 	const userId = useSelector((state) => state.personalProfile.id);
-	const arrayExperiences = useSelector((state) => state.experienceList.experiences);
-	const userId = useSelector((state) => state.personalProfile.id);
 
 	const dispatch = useDispatch();
 

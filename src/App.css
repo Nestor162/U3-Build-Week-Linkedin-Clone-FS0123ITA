@@ -233,6 +233,7 @@ body {
 
 .homeMainContainer {
   width: 60%;
+  margin: 0 auto;
 }
 
 .postProfileImage {
@@ -259,4 +260,9 @@ body {
   font-size: 0.8rem;
   padding: 0;
   margin: 0;
+}
+
+.postCreatorPicture {
+  width: 50px;
+  border-radius: 100%;
 }

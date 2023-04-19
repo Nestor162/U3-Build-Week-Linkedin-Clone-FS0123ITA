@@ -136,27 +136,21 @@ export const postsFetch = async (dispatch) => {
 	}
 };
 
-export const addPostAsync = (handleClose, data) => {
-	return async (dispatch, getState) => {
+export const addPosts = () => {
+	return async (dispatch, data) => {
 		try {
-			let res = await fetch(
-				`https://striveschool-api.herokuapp.com/api/posts/:postId`,
-
-				{ ...getOptions('POST'), body: JSON.stringify(data) },
-			);
-
-			if (res.ok) {
-				let addedPost = await res.json();
-
+			let response = await fetch(`https://striveschool-api.herokuapp.com/api/posts/:postId`, {
+				method: 'POST',
+				headers: {
+					authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(data),
+			});
+			if (response.ok) {
+				let addedPost = await response.json();
 				console.log(addedPost);
-
-				handleClose();
-
-				dispatch({
-					type: ADD_POST,
-
-					payload: addedPost,
-				});
+				dispatch({ type: ADD_POST, payload: addedPost });
 			} else {
 				console.log('error');
 			}

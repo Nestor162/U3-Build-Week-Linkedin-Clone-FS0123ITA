@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import { Alert, Button, Col, Modal, Row, Spinner } from "react-bootstrap";
 import { Trash } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
+import { experienceFetch } from "../redux/actions";
 
 function ExperiencesListCards() {
   const arrayExperiences = useSelector(state => state.experienceList.experiences);
   const userId = useSelector(state => state.personalProfile.id);
+
+  const dispatch = useDispatch();
 
   const deleteExperience = async id => {
     try {
@@ -29,9 +32,10 @@ function ExperiencesListCards() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const handleAccept = id => {
-    deleteExperience(id);
+  const handleAccept = async id => {
+    await deleteExperience(id);
     setShow(false);
+    await experienceFetch(dispatch, userId);
   };
 
   return (

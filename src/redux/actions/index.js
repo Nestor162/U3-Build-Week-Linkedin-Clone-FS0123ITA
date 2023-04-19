@@ -50,6 +50,7 @@ export const personalProfileFetch = async (dispatch) => {
 };
 
 export const addImageAsync = (data, userId) => {
+  const url = `https://striveschool-api.herokuapp.com/api/profile/${userId}/picture`;
   let header = {
     method: "POST",
     headers: {
@@ -58,10 +59,7 @@ export const addImageAsync = (data, userId) => {
   };
   return async (dispatch, getState) => {
     try {
-      let res = await fetch(
-        `https://striveschool-api.herokuapp.com/api/profile/${userId}/picture`,
-        { ...header, body: data }
-      );
+      let res = await fetch(url, { ...header, body: data });
 
       if (res.ok) {
         let addedImage = await res.json();

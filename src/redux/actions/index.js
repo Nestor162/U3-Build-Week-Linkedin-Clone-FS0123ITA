@@ -96,20 +96,27 @@ export const experienceFetch = async (dispatch, userId) => {
 	}
 };
 
-export const addImageAsync = (formData, userId) => {
-	return async (dispatch) => {
+export const addImageAsync = (data, userId) => {
+	const url = 'https://striveschool-api.herokuapp.com/api/profile/${userId}/picture';
+	let header = {
+		method: 'POST',
+		headers: {
+			authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
+		},
+	};
+	return async (dispatch, getState) => {
 		try {
-			let res = await fetch(`https://striveschool-api.herokuapp.com/api/profile/${userId}/picture`, {
-				method: 'POST',
-				headers: {
-					authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
-					'Content-Type': 'application/json',
-				},
-				body: formData,
-			});
+			let res = await fetch(url, { ...header, body: data });
+
 			if (res.ok) {
 				let addedImage = await res.json();
-				dispatch({ type: ADD_IMAGE, payload: addedImage });
+
+				console.log(addedImage);
+
+				dispatch({
+					type: ADD_IMAGE,
+					payload: addedImage,
+				});
 			} else {
 				console.log('error');
 			}

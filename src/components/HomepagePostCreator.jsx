@@ -12,7 +12,7 @@ const HomepagePostCreator = () => {
 
 	const handleSubmit = () => {
 		addPosts(dispatch, postText);
-		console.log(Post sent - received i don't knwo);
+		console.log('Post sent - received i do not know');
 	};
 
 	return (

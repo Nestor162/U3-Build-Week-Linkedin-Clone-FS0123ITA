@@ -7,8 +7,12 @@ hr {
   margin: 0.15rem;
 }
 
+.asideCard {
+  width: 18rem;
+}
+
 .r-sidebar {
-  width: 400px;
+  width: 15rem;
   display: flex;
   margin-inline: auto;
 }

@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
-import { Card, Container, Spinner } from 'react-bootstrap';
+import { Button, Card, Col, Container, Spinner } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { postsFetch } from '../redux/actions';
+import { deletePosts, modifyPosts, postsFetch } from '../redux/actions';
 
 const HomepagePosts = () => {
 	const posts = useSelector((state) => state.postsList.posts);
-	console.log(posts);
+	const username = useSelector((state) => state.personalProfile.username);
 
 	const dispatch = useDispatch();
 
@@ -16,17 +16,17 @@ const HomepagePosts = () => {
 
 	return (
 		<>
-			<Container className="homeMainContainer py-3">
+			<Container className="py-3">
 				{posts.length > 0 ? (
 					posts.map((post) => {
-						console.log('POST:', post.user, post._id);
 						return (
 							<Container key={post._id} className="my-2">
 								<Card className="px-3">
 									<Card.Body>
 										<Card.Title className="d-flex">
-											{post.user && <img src={post.user.image} alt={post.username} className="postProfileImage rounded-circle" />}
-											<div>
+											<Col xs={2}>{post.user && <img src={post.user.image} alt={post.username} className="postProfileImage rounded-circle" />}</Col>
+
+											<Col xs={9}>
 												<p className="postHeader">
 													{post.user && post.user.name} <span> {post.user && post.user.surname}</span>
 												</p>
@@ -40,7 +40,17 @@ const HomepagePosts = () => {
 														</span>
 													</div>
 												</Card.Subtitle>
-											</div>
+											</Col>
+											{post.username === username && (
+												<Col xs={1} className="d-flex align-items-top">
+													<Button variant="none" className="m-0 p-0" onClick={() => deletePosts(post._id, dispatch)}>
+														<i className="bi bi-trash3 py-0  px-2m-0"></i>
+													</Button>
+													<Button variant="none" className="m-0 p-0" onClick={() => modifyPosts(post._id)}>
+														<i className="bi bi-pencil m-0 py-0 px-2"></i>
+													</Button>
+												</Col>
+											)}
 										</Card.Title>
 
 										<Card.Text>{post.text}</Card.Text>

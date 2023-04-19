@@ -1,17 +1,22 @@
 import { useState } from 'react';
 import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { addPosts } from '../redux/actions';
+import { addPosts, postsFetch } from '../redux/actions';
 
 const HomepagePostCreator = () => {
 	const profileImg = useSelector((state) => state.personalProfile.img);
 	const profileName = useSelector((state) => state.personalProfile.name);
 	const dispatch = useDispatch();
 
-	const [postText, setPostText] = useState('');
+	const [postText, setPostText] = useState({
+		text: '',
+	});
 
-	const handleSubmit = () => {
+	const handleSubmit = (e) => {
+		e.preventDefault();
 		addPosts(dispatch, postText);
+		postsFetch(dispatch);
+		console.log(postText);
 		console.log('Post sent - received i do not know');
 	};
 
@@ -30,14 +35,13 @@ const HomepagePostCreator = () => {
 										type="text"
 										placeholder="Start a post"
 										className="rounded-pill"
-										value={postText}
-										onChange={(e) => setPostText(e.target.value)}
+										onChange={(e) => setPostText({ text: e.target.value })}
 									/>
 								</Form.Group>
 							</Form>
 						</Col>
 					</Row>
-					{postText.length > 10 && (
+					{postText.text.length > 10 && (
 						<Button type="submit" onClick={handleSubmit}>
 							Post
 						</Button>

@@ -1,3 +1,5 @@
+import { useDispatch } from 'react-redux';
+
 export const SET_PROFILE_NAME = 'SET_PROFILE_NAME';
 export const SET_PROFILE_LASTNAME = 'SET_PROFILE_LASTNAME';
 export const SET_PROFILE_EMAIL = 'SET_PROFILE_EMAIL';
@@ -145,28 +147,64 @@ export const postsFetch = async (dispatch) => {
 	}
 };
 
-export const addPosts = () => {
-	return async (dispatch, data) => {
-		try {
-			let response = await fetch(`https://striveschool-api.herokuapp.com/api/posts/:postId`, {
-				method: 'POST',
-				headers: {
-					authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify(data),
-			});
-			if (response.ok) {
-				let addedPost = await response.json();
-				console.log(addedPost);
-				dispatch({ type: ADD_POST, payload: addedPost });
-			} else {
-				console.log('error');
-			}
-		} catch (error) {
-			console.log(error);
+export const addPosts = async (dispatch, data) => {
+	try {
+		let response = await fetch(`https://striveschool-api.herokuapp.com/api/posts/`, {
+			method: 'POST',
+			headers: {
+				authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(data),
+		});
+		if (response.ok) {
+			let addedPost = await response.json();
+			console.log(addedPost);
+			dispatch({ type: ADD_POST, payload: addedPost });
+			postsFetch(dispatch);
+		} else {
+			console.log('error');
 		}
-	};
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+export const deletePosts = async (id, dispatch) => {
+	try {
+		let response = await fetch(`https://striveschool-api.herokuapp.com/api/posts/${id}`, {
+			method: 'DELETE',
+			headers: {
+				authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
+				'Content-Type': 'application/json',
+			},
+		});
+		if (response.ok) {
+			const data = response.json();
+			console.log(data);
+		}
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+export const modifyPosts = async (id, data) => {
+	try {
+		let response = await fetch(`https://striveschool-api.herokuapp.com/api/posts/${id}`, {
+			method: 'PUT',
+			headers: {
+				authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(data),
+		});
+		if (response.ok) {
+			const data = response.json();
+			console.log(data);
+		}
+	} catch (error) {
+		console.log(error);
+	}
 };
 
 // const getOptions = (method) => {

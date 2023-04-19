@@ -235,9 +235,8 @@ body {
   fill: #4ed42d;
 }
 
-.homeMainContainer {
-  width: 60%;
-  margin: 0 auto;
+.homepageContainer {
+  display: flex;
 }
 
 .postProfileImage {
@@ -269,4 +268,47 @@ body {
 .postCreatorPicture {
   width: 50px;
   border-radius: 100%;
+}
+
+.leftSidebar {
+  position: relative;
+  width: 15rem;
+}
+
+.leftSidebarPicture {
+  position: absolute;
+  top: 10%;
+  left: 30%;
+}
+
+.leftSidebarBody {
+  padding-top: 4.5rem
+}
+
+.leftSidebarSubtitle {
+  color: #666666;
+  font-size: 0.8rem;
+  padding-block: 1rem;
+}
+
+.leftSidebarCounters {
+  font-size: 0.8rem;
+  display: flex;
+  justify-content: space-between;
+padding: 0;
+}
+
+.leftSidebarCounters span {
+  color: #0b66c2;
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+
+.leftSidebarButton {
+  font-size: 0.8rem;
+}
+
+.homepageMainContainer {
+  width: 50rem;
+  margin: 0;
 }

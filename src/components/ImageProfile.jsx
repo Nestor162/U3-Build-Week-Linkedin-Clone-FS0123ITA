@@ -16,6 +16,11 @@ function ImageProfile() {
 
   const addImageEventHandler = (event) => {
     event.preventDefault();
+    if (!image) {
+      alert("Please select an image to upload");
+      return;
+    }
+
     setImage(event.target.files[0]);
     console.log(image, "files");
     // if (image !== 0) {

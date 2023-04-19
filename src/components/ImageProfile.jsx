@@ -1,99 +1,75 @@
-import React from 'react';
-import { useState } from 'react';
-import { Button, Card, Container, Form } from 'react-bootstrap';
-import { useDispatch, useSelector } from 'react-redux';
-import { addImageAsync } from '../redux/actions';
+import React from "react";
+import { useState } from "react";
+import { Button, Form, Modal } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { addImageAsync } from "../redux/actions";
 
 const ImageProfile = () => {
-	const dispatch = useDispatch();
-	const [image, setImage] = useState([]);
-	const formData = new FormData();
-	const userId = useSelector((state) => state.personalProfile.id);
+  const dispatch = useDispatch();
+  const [image, setImage] = useState([]);
+  const formData = new FormData();
+  const userId = useSelector((state) => state.personalProfile.id);
 
-	const [show, setShow] = useState(false);
-	// const [image, setImage] = useState("")
+  const [show, setShow] = useState(false);
+  // const [image, setImage] = useState("")
 
-	const handleClose = () => setShow(false);
+  const handleClose = () => setShow(false);
 
-	const addImageEventHandler = (event) => {
-		event.preventDefault();
-		setImage(event.target.files[0]);
-		console.log(image, 'files');
-		// if (image !== 0) {
-		//   // dispatch(addImageAsync(formData, userId));
-		// }
-		// formData.append(dispatch(addImageAsync(image)));
-		console.log(formData, 'formData');
-	};
+  const addImageEventHandler = (event) => {
+    event.preventDefault();
+    if (!image) {
+      alert("Please select an image to upload");
+      return;
+    }
 
-	return (
-		<>
-			<Container className="mainProfileContainer">
-				<Card className="mainProfileCard">
-					<Container className="d-flex justify-content-between ">
-						<Card.Title className="mainCardsTitle mt-3">Raccomended For You</Card.Title>
-					</Container>
-					<Card.Subtitle className="mainCardsSubtitle mt-2 mx-1">
-						{' '}
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							className="eyes-svg "
-							width="20"
-							height="20"
-							fill="currentColor"
-							class="bi bi-eye-fill"
-							viewBox="0 0 16 16"
-						>
-							<path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
-							<path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
-						</svg>{' '}
-						Solo per te{' '}
-					</Card.Subtitle>
-					<Form>
-						<Form.Group>
-							<svg
-								className="camera mt-2 mx-1"
-								xmlns="http://www.w3.org/2000/svg"
-								width="30"
-								height="30"
-								fill="currentColor"
-								class="bi bi-camera-fill"
-								viewBox="0 0 16 16"
-							>
-								<path d="M10.5 8.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
-								<path d="M2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2zm.5 2a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm9 2.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0z" />
-							</svg>
-							<label className="Label-Image mt-2 mx-1" for="avatar">
-								Choose a profile picture:
-							</label>
-							<Form.Control type="file" rows={4} onChange={(e) => addImageEventHandler(e)} />
-							{/* {console.log(image, 'ciao')} */}
-						</Form.Group>
-					</Form>
-					<Button variant="secondary" className="button-close">
-						Close
-					</Button>
-					<Button
-						variant="primary"
-						className="button-upload"
-						onClick={(e) => {
-							e.preventDefault();
-							handleClose();
-							formData.append('profile', image);
-							dispatch(addImageAsync(formData, userId));
-							console.log(formData);
-						}}
-					>
-						Upload
-					</Button>
-				</Card>
-				<>
-					{/* <Button variant="secondary" className="button-close">
+    setImage(event.target.files[0]);
+    console.log(image, "files");
+    // if (image !== 0) {
+    //   // dispatch(addImageAsync(formData, userId));
+    // }
+    // formData.append(dispatch(addImageAsync(image)));
+    console.log(formData, "formData");
+  };
+
+  return (
+    <>
+      <div>
+        <Modal.Header closeButton>
+          <Modal.Title>Upload Image</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p className="text-center text-dark-emphasis py-4 fs-4">
+            Your photo doesn't have to be a close-up of you! But something that
+            represents you.
+          </p>
+
+          <p className="text-center text-dark-emphasis py-4">
+            We ask LinkedIn users to use their real identities, so take or
+            upload a picture of yourself.
+            <br /> Then crop it, apply filters and refine it however you want.
+          </p>
+          <Form>
+            <Form.Group>
+              <Form.Control
+                type="file"
+                rows={4}
+                // placeholder="What do you want to talk about"
+                onChange={(e) => addImageEventHandler(e)}
+              />
+              {console.log(image, "imgsdfghj")}
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button
+            className="mt-2 mx-2"
+            variant="secondary" /*onClick={props.handleClose}*/
+          >
             Close
           </Button>
           <Button
+            className="mt-2"
             variant="primary"
-            className="button-upload"
             onClick={(e) => {
               e.preventDefault();
               handleClose();
@@ -102,11 +78,11 @@ const ImageProfile = () => {
             }}
           >
             Upload
-          </Button> */}
-				</>
-			</Container>
-		</>
-	);
+          </Button>
+        </Modal.Footer>
+      </div>
+    </>
+  );
 };
 
 export default ImageProfile;

@@ -29,7 +29,7 @@ const MainProfileExperiences = () => {
             <Card.Title className="mainCardsTitle">Experience</Card.Title>
             <div>
               <AddExperience />
-              <Pencil size={20} className="content-buttons me-2" />
+              {/* <Pencil size={20} className="content-buttons me-2" /> */}
             </div>
           </Container>
 

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Alert, Button, Col, Modal, Row, Spinner } from "react-bootstrap";
+import { Alert, Button, Col, Modal, Row } from "react-bootstrap";
 import { Trash } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { experienceFetch } from "../redux/actions";

@@ -68,8 +68,12 @@ function ExperiencesListCards() {
     area: ""
   });
 
-  const handleAccept = async id => {
-    await deleteExperience(id);
+  const [cardToDelete, setCardToDelete] = useState("");
+  const [roleToDelete, setRoleToDelete] = useState("");
+  const [descToDelete, setDescToDelete] = useState("");
+
+  const handleAccept = async () => {
+    await deleteExperience(cardToDelete);
     setShow(false);
     await experienceFetch(dispatch, userId);
   };
@@ -92,7 +96,16 @@ function ExperiencesListCards() {
                   {/* <img src={exp} className="img-fluid rounded-circle" alt={`img`} width="48" height="48" /> */}
                 </Col>
                 <Col xs={11} className="position-relative exp-col">
-                  <Trash className="position-absolute delete-button" size={20} onClick={handleShow} />{" "}
+                  <Trash
+                    className="position-absolute delete-button"
+                    size={20}
+                    onClick={() => {
+                      handleShow();
+                      setCardToDelete(exp._id);
+                      setRoleToDelete(exp.role);
+                      setDescToDelete(exp.description);
+                    }}
+                  />{" "}
                   <Pencil
                     size={20}
                     className="me-4 position-absolute delete-button edit-button"
@@ -116,8 +129,8 @@ function ExperiencesListCards() {
                     <Modal.Body>
                       Are you sure that you want to delete:{" "}
                       <span>
-                        <strong className="d-block">{exp.company}</strong>
-                        <em className="d-block">{exp.description}</em>
+                        <strong className="d-block">{roleToDelete}</strong>
+                        <em className="d-block">{descToDelete}</em>
                       </span>
                     </Modal.Body>
                     <Modal.Footer>
@@ -126,8 +139,8 @@ function ExperiencesListCards() {
                       </Button>
                       <Button
                         variant="danger"
-                        onClick={e => {
-                          handleAccept(exp._id);
+                        onClick={() => {
+                          handleAccept();
                         }}
                       >
                         Delete

@@ -12,9 +12,6 @@ const MainProfileSection = () => {
 	const profileArea = useSelector((state) => state.personalProfile.area);
 	const profileImg = useSelector((state) => state.personalProfile.img);
 
-	// const updatedProfile = useSelector((state) => state.updatedProfile.content);
-	// console.log(updatedProfile);
-
 	const dispatch = useDispatch();
 
 	useEffect(() => {

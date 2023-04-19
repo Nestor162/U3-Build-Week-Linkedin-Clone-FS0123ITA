@@ -87,9 +87,7 @@ function ExperiencesListCards() {
           );
         })
       ) : (
-        <div className="d-flex justify-content-center py-4">
-          <Spinner />
-        </div>
+        <Alert>There aren't experiences yet</Alert>
       )}
       {/* {arrayExperiences.length === 0 && <Alert>There aren't experiences yet</Alert>} */}
     </>

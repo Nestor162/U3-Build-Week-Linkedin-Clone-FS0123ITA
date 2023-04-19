@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Button, Card, Container } from "react-bootstrap";
+import { Button, Card, Container, Spinner } from "react-bootstrap";
 import { Pencil } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { experienceFetch } from "../redux/actions";
@@ -11,6 +11,7 @@ const MainProfileExperiences = () => {
 
   const userId = useSelector(state => state.personalProfile.id);
   const arrayExperiences = useSelector(state => state.experienceList.experiences);
+  const isLoading = useSelector(state => state.experienceList.isLoading);
 
   useEffect(() => {
     if (userId) {
@@ -31,7 +32,15 @@ const MainProfileExperiences = () => {
             </div>
           </Container>
 
-          <Card.Text>{arrayExperiences && <ExperiencesListCards />}</Card.Text>
+          <Card.Text>
+            {isLoading ? (
+              <div className="d-flex justify-content-center py-4">
+                <Spinner />
+              </div>
+            ) : (
+              <ExperiencesListCards />
+            )}
+          </Card.Text>
         </Card.Body>
         <hr className="cardSeparator" />
         <Button variant="none">

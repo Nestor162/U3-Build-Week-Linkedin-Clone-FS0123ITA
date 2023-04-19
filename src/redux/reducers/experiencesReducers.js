@@ -1,6 +1,7 @@
-import { GET_EXPERIENCES } from "../actions";
+import { GET_EXPERIENCES, SET_LOADING } from "../actions";
 
 const initialState = {
+  isLoading: true,
   experiences: []
 };
 
@@ -10,6 +11,11 @@ const experiencesReducers = (state = initialState, action) => {
       return {
         ...state,
         experiences: action.payload
+      };
+    case SET_LOADING:
+      return {
+        ...state,
+        isLoading: action.payload
       };
 
     default:

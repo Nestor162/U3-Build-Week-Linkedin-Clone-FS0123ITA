@@ -40,7 +40,14 @@ const MainProfileSection = () => {
             handleImgChange();
           }}
         />
-        <Camera className="change-img-icon position-absolute" color="white" size={34} />
+        <Camera
+          className="change-img-icon position-absolute"
+          color="white"
+          size={34}
+          onClick={() => {
+            handleImgChange();
+          }}
+        />
 
         <Card.Img variant="top" src={ProfileCoverImage} />
 

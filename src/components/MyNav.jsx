@@ -38,13 +38,14 @@ const MyNav = () => {
 
 		const searchJobsCategory = () => {
 			dispatch({ type: SEARCHED_QUERIES, payload: value });
+			navigate('/jobs/search');
 			searchedJobsCategory(dispatch, value);
 			console.log('Jobs have been searched for query category:', value);
-			return redirect('/jobs/search');
 		};
 
 		const searchJobsCompany = () => {
 			dispatch({ type: SEARCHED_QUERIES, payload: value });
+			navigate('/jobs/search');
 			searchedJobsCompany(dispatch, value);
 			console.log('Jobs have been searched for query company:', value);
 			return redirect('/jobs/search');

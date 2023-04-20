@@ -23,6 +23,10 @@ export const SET_SHOWING = "SET_SHOWING";
 
 export const SET_EXP_IMG = "SET_EXP_IMG";
 
+export const GET_JOBS = "GET_JOBS";
+export const GET_SEARCHED_JOBS = "GET_SEARCHED_JOBS";
+export const SEARCHED_QUERIES = "SEARCHED_QUERIES";
+
 const getOptions = method => {
   return {
     method: method,
@@ -214,17 +218,57 @@ export const modifyPosts = async (id, data) => {
   }
 };
 
-// const getOptions = (method) => {
+export const jobsFetch = async dispatch => {
+  try {
+    const response = await fetch("https://strive-benchmark.herokuapp.com/api/jobs");
+    if (response.ok) {
+      const jobs = await response.json();
+      dispatch({ type: GET_JOBS, payload: jobs.data });
+      console.log(jobs.data);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-// const getOptions = method => {
-//   return {
-//     method: method,
-//     headers: {
-//       Authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
-//       "Content-Type": "application/json",
-//     },
-//   };
-// };
+export const searchedJobs = async (dispatch, query) => {
+  try {
+    const response = await fetch("https://strive-benchmark.herokuapp.com/api/jobs?search=" + query);
+    if (response.ok) {
+      const data = await response.json();
+      dispatch({ type: GET_SEARCHED_JOBS, payload: data.data });
+      console.log(data.data);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const searchedJobsCategory = async (dispatch, query) => {
+  try {
+    const response = await fetch("https://strive-benchmark.herokuapp.com/api/jobs?category=" + query);
+    if (response.ok) {
+      const data = await response.json();
+      dispatch({ type: GET_SEARCHED_JOBS, payload: data.data });
+      console.log(data.data);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const searchedJobsCompany = async (dispatch, query) => {
+  try {
+    const response = await fetch("https://strive-benchmark.herokuapp.com/api/jobs?company=" + query);
+    if (response.ok) {
+      const data = await response.json();
+      dispatch({ type: GET_SEARCHED_JOBS, payload: data.data });
+      console.log(data.data);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export const addImgExp = (data, userId, expId) => {
   const url = `https://striveschool-api.herokuapp.com/api/profile/${userId}/experiences/${expId}/picture`;

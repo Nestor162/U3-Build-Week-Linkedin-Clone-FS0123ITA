@@ -15,16 +15,15 @@ const HomepagePostCreator = () => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		addPosts(dispatch, postText);
+		setPostText('');
 		postsFetch(dispatch);
-		console.log(postText);
-		console.log('Post sent - received i do not know');
 	};
 
 	return (
 		<>
 			<Container className="homeMainContainer pt-3">
 				<Card className="px-3">
-					<Row className="d-flex align-items-baseline py-4">
+					<Row className="d-flex align-items-baseline pt-4">
 						<Col xs={1}>
 							<img src={profileImg} alt={profileName} className="postCreatorPicture" />
 						</Col>
@@ -41,11 +40,13 @@ const HomepagePostCreator = () => {
 							</Form>
 						</Col>
 					</Row>
-					{postText.text.length > 10 && (
-						<Button type="submit" onClick={handleSubmit}>
-							Post
-						</Button>
-					)}
+					<Row>
+						<Col className="d-flex justify-content-center mb-3">
+							<Button type="submit" onClick={handleSubmit} className="postCreatorButton">
+								Post
+							</Button>
+						</Col>
+					</Row>
 				</Card>
 			</Container>
 		</>

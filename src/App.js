@@ -10,6 +10,8 @@ import { Container } from 'react-bootstrap';
 import Footer from './components/Footer';
 import Homepage from './components/Homepage';
 import ExperiencesDetailsPage from './components/ExperiencesDetailsPage';
+import JobsPage from './components/JobsPage';
+import JobsSearchPage from './components/JobsSearchPage';
 
 function App() {
 	return (
@@ -20,6 +22,8 @@ function App() {
 					<Route path="/" element={<Homepage />} />
 					<Route path="/me" element={<MainProfilePage />} />
 					<Route path="/experiences" element={<ExperiencesDetailsPage />} />
+					<Route path="/jobs" element={<JobsPage />} />
+					<Route path="/jobs/search" element={<JobsSearchPage />} />
 				</Routes>
 			</Container>
 			<Footer />

@@ -139,7 +139,7 @@ function AddExperience() {
               />
             </Form.Group>
             <Card>
-              <Modal.Header closeButton>
+              <Modal.Header>
                 <Modal.Title>Upload Image</Modal.Title>
               </Modal.Header>
               <Modal.Body>

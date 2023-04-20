@@ -1,22 +1,29 @@
-import React, { useState } from "react";
-import { Button, Form, Modal } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Button, Card, Form, Modal } from "react-bootstrap";
 import { Plus } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
-import { experienceFetch } from "../redux/actions";
-
-import ExpImgUpload from "./ExpImgUpload";
+import { addImgExp, experienceFetch } from "../redux/actions";
 
 function AddExperience() {
   const [show, setShow] = useState(false);
+  const [expId, setExpId] = useState("");
   const dispatch = useDispatch();
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const userId = useSelector(state => state.personalProfile.id);
-  const handleSave = () => {
-    AddExperienceFetch(userId);
+
+  const handleSave = async () => {
+    await AddExperienceFetch(userId);
     setShow(false);
   };
+
+  useEffect(() => {
+    if (expId) {
+      console.log(expId);
+      dispatch(addImgExp(formData, userId, expId));
+    }
+  }, [expId]);
 
   const [experienceInfo, setExperienceInfo] = useState({
     role: "",
@@ -39,13 +46,28 @@ function AddExperience() {
       });
       if (response.ok) {
         const data = await response.json();
-        experienceFetch(dispatch, userId);
+        setExpId(data._id);
         return data;
       }
     } catch (error) {
       console.log(error);
     }
   };
+
+  const [image, setImage] = useState([]);
+  const formData = new FormData();
+  formData.append("experience", image);
+
+  const addImageEventHandler = event => {
+    event.preventDefault();
+    if (!image) {
+      alert("Please select an image to upload");
+      return;
+    }
+
+    setImage(event.target.files[0]);
+  };
+
   return (
     <>
       <Plus size={35} className="content-buttons me-4" onClick={handleShow} />
@@ -115,7 +137,34 @@ function AddExperience() {
                 placeholder="Enter your country name"
               />
             </Form.Group>
-            <ExpImgUpload />
+            <Card>
+              <Modal.Header closeButton>
+                <Modal.Title>Upload Image</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <p className="text-center text-dark-emphasis py-4 fs-4">Upload an Experience Image</p>
+
+                <Form>
+                  <Form.Group>
+                    <Form.Control type="file" rows={4} onChange={e => addImageEventHandler(e)} />
+                  </Form.Group>
+                </Form>
+              </Modal.Body>
+              <Modal.Footer>
+                {/* <Button
+                  className="mt-2"
+                  variant="primary"
+                  onClick={e => {
+                    e.preventDefault();
+
+                    formData.append("experience", image);
+                    dispatch(addImgExp(formData, userId, expId));
+                  }}
+                >
+                  Upload
+                </Button> */}
+              </Modal.Footer>
+            </Card>
           </Form>
         </Modal.Body>
         <Modal.Footer>

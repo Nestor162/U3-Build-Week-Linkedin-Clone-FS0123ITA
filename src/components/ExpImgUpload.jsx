@@ -7,12 +7,12 @@ import { SET_SHOWING, addImageAsync, addImgExp } from "../redux/actions";
 const ExpImgUpload = () => {
   const dispatch = useDispatch();
   const [image, setImage] = useState([]);
-  const formData = new FormData();
   const userId = useSelector(state => state.personalProfile.id);
   const expId = useSelector(state => state.experienceList.experiences._id);
 
   // const [image, setImage] = useState("")
 
+  const formData = new FormData();
   const addImageEventHandler = event => {
     event.preventDefault();
     if (!image) {

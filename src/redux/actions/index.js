@@ -226,26 +226,30 @@ export const modifyPosts = async (id, data) => {
 
 export const addImgExp = (data, userId, expId) => {
   const url = `https://striveschool-api.herokuapp.com/api/profile/${userId}/experiences/${expId}/picture`;
-  let header = {
-    method: "POST",
-    headers: {
-      authorization: `Bearer ${process.env.REACT_APP_API_KEY}`
-    }
+  const headers = {
+    Authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
+    "Content-Type": "multipart/form-data"
   };
+  const options = {
+    method: "POST",
+    headers: headers,
+    body: data
+  };
+
   return async dispatch => {
     try {
-      let res = await fetch(url, { ...header, body: data });
+      console.log(data);
+      const response = await fetch(url, options);
 
-      if (res.ok) {
-        let expImg = await res.json();
-        dispatch(experienceFetch(dispatch));
-
+      if (response.ok) {
+        const expImg = await response.json();
         console.log(expImg);
+        dispatch(experienceFetch(dispatch));
       } else {
-        console.log("error");
+        console.log("Error: ", response.status, response.statusText);
       }
     } catch (error) {
-      console.log(error);
+      console.log("Error: ", error.message);
     }
   };
 };

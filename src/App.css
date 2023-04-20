@@ -282,7 +282,7 @@ body {
 }
 
 .leftSidebarBody {
-  padding-top: 4.5rem
+  padding-top: 4.5rem;
 }
 
 .leftSidebarSubtitle {
@@ -295,7 +295,7 @@ body {
   font-size: 0.8rem;
   display: flex;
   justify-content: space-between;
-padding: 0;
+  padding: 0;
 }
 
 .leftSidebarCounters span {
@@ -311,4 +311,20 @@ padding: 0;
 .homepageMainContainer {
   width: 50rem;
   margin: 0;
+}
+
+.change-img-icon {
+  top: 200px;
+  left: 100px;
+  display: none;
+  max-width: fit-content;
+  max-height: fit-content;
+}
+
+#mainProfilePicture:hover + .change-img-icon {
+  display: block;
+}
+
+#mainProfilePicture:hover {
+  filter: brightness(0.5);
 }

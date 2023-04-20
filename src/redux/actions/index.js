@@ -115,7 +115,7 @@ export const addImageAsync = (data, userId) => {
 
       if (res.ok) {
         let addedImage = await res.json();
-        dispatch(personalProfileFetch(dispatch));
+        // dispatch(personalProfileFetch(dispatch));
 
         console.log(addedImage);
 

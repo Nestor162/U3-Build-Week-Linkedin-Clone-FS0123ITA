@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { SET_SHOWING, addImageAsync } from "../redux/actions";
+import { SET_SHOWING, addImageAsync, personalProfileFetch } from "../redux/actions";
 
 const ImageProfile = () => {
   const dispatch = useDispatch();
@@ -80,7 +80,9 @@ const ImageProfile = () => {
               e.preventDefault();
               dispatch({ type: SET_SHOWING, payload: false });
               formData.append("profile", image);
-              dispatch(addImageAsync(formData, userId));
+              dispatch(addImageAsync(formData, userId)).then(() => {
+                dispatch(personalProfileFetch(dispatch));
+              });
             }}
           >
             Upload

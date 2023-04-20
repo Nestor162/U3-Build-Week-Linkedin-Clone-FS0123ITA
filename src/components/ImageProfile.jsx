@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { Button, Form, Modal } from "react-bootstrap";
+import { Button, Form, Modal, Spinner } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { SET_SHOWING, addImageAsync, personalProfileFetch } from "../redux/actions";
 
@@ -10,6 +10,8 @@ const ImageProfile = () => {
   const formData = new FormData();
   const userId = useSelector(state => state.personalProfile.id);
   const isShowing = useSelector(state => state.isShowing.isShowing);
+
+  const [loading, setLoading] = useState(false);
 
   // const [image, setImage] = useState("")
 
@@ -80,15 +82,26 @@ const ImageProfile = () => {
               e.preventDefault();
               dispatch({ type: SET_SHOWING, payload: false });
               formData.append("profile", image);
-              dispatch(addImageAsync(formData, userId)).then(() => {
-                dispatch(personalProfileFetch(dispatch));
-              });
+              setLoading(true);
+              dispatch(addImageAsync(formData, userId))
+                .then(() => {
+                  dispatch(personalProfileFetch(dispatch));
+                })
+                .finally(() => {
+                  setLoading(false);
+                  console.log("finally!");
+                });
             }}
           >
             Upload
           </Button>
         </Modal.Footer>
       </Modal>
+      {loading && (
+        <div className="position-absolute bottom-0 left-0 right-0 " style={{ top: "285px", left: "267px" }}>
+          <Spinner />
+        </div>
+      )}
     </>
   );
 };

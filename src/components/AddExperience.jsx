@@ -14,13 +14,15 @@ function AddExperience() {
   const userId = useSelector(state => state.personalProfile.id);
 
   const handleSave = async () => {
-    await AddExperienceFetch(userId);
+    AddExperienceFetch(userId);
     setShow(false);
   };
 
   useEffect(() => {
     if (expId) {
-      dispatch(addImgExp(formData, userId, expId));
+      dispatch(addImgExp(formData, userId, expId)).then(() => {
+        dispatch(experienceFetch(dispatch, userId));
+      });
     }
   }, [expId]);
 

@@ -244,12 +244,13 @@ export const addImgExp = (data, userId, expId) => {
 
       if (response.ok) {
         const expImg = await response.json();
-        // dispatch(experienceFetch(dispatch));
 
         dispatch({
           type: SET_EXP_IMG,
           payload: expImg
         });
+
+        // dispatch(experienceFetch(dispatch));
       } else {
         console.log("Error: ", response.status, response.statusText);
       }

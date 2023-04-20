@@ -7,7 +7,6 @@ import { experienceFetch } from "../redux/actions";
 function ExperiencesListCards() {
   const arrayExperiences = useSelector(state => state.experienceList.experiences);
   const userId = useSelector(state => state.personalProfile.id);
-  const expImg = useSelector(state => state.experienceList.experiences.image);
 
   const dispatch = useDispatch();
 
@@ -91,7 +90,7 @@ function ExperiencesListCards() {
           return (
             <Row className="g-0">
               <Col xs={4} style={{ maxWidth: "fit-content" }} className="pt-3 ps-3">
-                <img src={exp.image} className="img-fluid " alt={`img ${exp.title}`} width="48" height="48" />
+                <img src={exp.image} className="img-fluid" alt={`img ${exp.title}`} />
               </Col>
               <Col xs={11} className="position-relative exp-col">
                 <Trash

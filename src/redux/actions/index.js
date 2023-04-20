@@ -27,6 +27,9 @@ export const GET_JOBS = "GET_JOBS";
 export const GET_SEARCHED_JOBS = "GET_SEARCHED_JOBS";
 export const SEARCHED_QUERIES = "SEARCHED_QUERIES";
 
+export const SET_FAVORITE = "SET_FAVORITE";
+export const REMOVE_FAVORITE = "REMOVE_FAVORITE";
+
 const getOptions = method => {
   return {
     method: method,

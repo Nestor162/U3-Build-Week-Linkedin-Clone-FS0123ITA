@@ -386,3 +386,14 @@ body {
 .jobsUpdateTitle {
   font-weight: 600;
 }
+
+.star-icon {
+  right: 30px;
+  top: 45%;
+  display: none;
+}
+
+.card-jobs:hover .star-icon {
+  display: block;
+  fill: goldenrod;
+}

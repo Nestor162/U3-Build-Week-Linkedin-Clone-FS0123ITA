@@ -1,11 +1,13 @@
-import JobsLeftSidebar from './JobsLeftSidebar';
+import FavoritesSidebar from "./FavoritesSidebar";
+import JobsLeftSidebar from "./JobsLeftSidebar";
 
 const JobsPage = () => {
-	return (
-		<>
-			<JobsLeftSidebar />
-		</>
-	);
+  return (
+    <>
+      <JobsLeftSidebar />
+      <FavoritesSidebar />
+    </>
+  );
 };
 
 export default JobsPage;

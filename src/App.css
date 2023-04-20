@@ -402,3 +402,17 @@ body {
   display: block;
   fill: goldenrod;
 }
+
+hr {
+  margin: 0.15rem;
+}
+
+.asideCard {
+  width: 18rem;
+}
+
+.r-sidebar {
+  width: 15rem;
+  display: flex;
+  margin-inline: auto;
+}

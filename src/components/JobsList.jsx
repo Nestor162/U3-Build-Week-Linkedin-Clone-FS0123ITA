@@ -2,7 +2,6 @@ import { Card, Container } from "react-bootstrap";
 import { Star, StarFill } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { REMOVE_FAVORITE, SET_FAVORITE } from "../redux/actions";
-import { useState } from "react";
 
 const JobsList = () => {
   const jobs = useSelector(state => state.jobsList.searchedJobs);
@@ -11,11 +10,11 @@ const JobsList = () => {
 
   const handleFavorite = job => {
     console.log(favorites);
-    dispatch({ type: SET_FAVORITE, payload: job._id });
+    dispatch({ type: SET_FAVORITE, payload: job });
   };
 
   const handleUnfavorite = job => {
-    dispatch({ type: REMOVE_FAVORITE, payload: job._id });
+    dispatch({ type: REMOVE_FAVORITE, payload: job });
   };
 
   return (
@@ -26,7 +25,7 @@ const JobsList = () => {
             <>
               <Card>
                 <Card.Body className="position-relative card-jobs">
-                  {favorites.includes(job._id) ? (
+                  {favorites.includes(job) ? (
                     <StarFill
                       className="position-absolute star-icon d-block"
                       size={"22px"}

@@ -16,8 +16,8 @@ const experiencesReducers = (state = initialState, action) => {
       return {
         ...state,
         favorites: state.favorites.filter(jobId => {
-          console.log(jobId);
-          return jobId !== action.payload;
+          console.log(jobId._id, action.payload._id);
+          return jobId._id !== action.payload._id;
         })
       };
 

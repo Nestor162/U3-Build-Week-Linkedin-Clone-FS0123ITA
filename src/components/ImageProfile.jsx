@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { SET_SHOWING, addImageAsync, personalProfileFetch } from "../redux/actions";
+import { SET_SHOWING, addImageAsync } from "../redux/actions";
 
 const ImageProfile = () => {
   const dispatch = useDispatch();

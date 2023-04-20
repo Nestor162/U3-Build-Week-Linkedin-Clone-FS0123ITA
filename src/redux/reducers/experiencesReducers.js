@@ -2,7 +2,8 @@ import { GET_EXPERIENCES, SET_LOADING } from "../actions";
 
 const initialState = {
   isLoading: true,
-  experiences: []
+  experiences: [],
+  experienceImg: ""
 };
 
 const experiencesReducers = (state = initialState, action) => {

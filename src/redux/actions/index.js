@@ -223,3 +223,29 @@ export const modifyPosts = async (id, data) => {
 //     },
 //   };
 // };
+
+export const addImgExp = (data, userId, expId) => {
+  const url = `https://striveschool-api.herokuapp.com/api/profile/${userId}/experiences/${expId}/picture`;
+  let header = {
+    method: "POST",
+    headers: {
+      authorization: `Bearer ${process.env.REACT_APP_API_KEY}`
+    }
+  };
+  return async dispatch => {
+    try {
+      let res = await fetch(url, { ...header, body: data });
+
+      if (res.ok) {
+        let expImg = await res.json();
+        dispatch(experienceFetch(dispatch));
+
+        console.log(expImg);
+      } else {
+        console.log("error");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};

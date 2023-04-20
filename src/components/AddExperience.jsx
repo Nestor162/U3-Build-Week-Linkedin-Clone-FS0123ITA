@@ -4,6 +4,8 @@ import { Plus } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { experienceFetch } from "../redux/actions";
 
+import ExpImgUpload from "./ExpImgUpload";
+
 function AddExperience() {
   const [show, setShow] = useState(false);
   const dispatch = useDispatch();
@@ -113,6 +115,7 @@ function AddExperience() {
                 placeholder="Enter your country name"
               />
             </Form.Group>
+            <ExpImgUpload />
           </Form>
         </Modal.Body>
         <Modal.Footer>

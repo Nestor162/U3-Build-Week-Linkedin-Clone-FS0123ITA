@@ -11,15 +11,12 @@ const JobsList = () => {
 
   const handleFavorite = job => {
     console.log(favorites);
-    dispatch({ type: SET_FAVORITE, payload: job });
-    setFilled(!filled);
+    dispatch({ type: SET_FAVORITE, payload: job._id });
   };
 
   const handleUnfavorite = job => {
     dispatch({ type: REMOVE_FAVORITE, payload: job._id });
-    setFilled(!filled);
   };
-  const [filled, setFilled] = useState(false);
 
   return (
     <>
@@ -29,10 +26,11 @@ const JobsList = () => {
             <>
               <Card>
                 <Card.Body className="position-relative card-jobs">
-                  {filled ? (
+                  {favorites.includes(job._id) ? (
                     <StarFill
-                      className="position-absolute star-icon"
+                      className="position-absolute star-icon d-block"
                       size={"22px"}
+                      fill="goldenrod"
                       onClick={() => handleUnfavorite(job)}
                     />
                   ) : (

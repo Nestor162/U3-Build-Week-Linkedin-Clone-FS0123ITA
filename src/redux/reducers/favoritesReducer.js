@@ -12,10 +12,13 @@ const experiencesReducers = (state = initialState, action) => {
         favorites: [...state.favorites, action.payload]
       };
     case REMOVE_FAVORITE:
-      const index = state.favorites.findIndex(item => item.id === action.payload);
+      console.log(action.payload);
       return {
         ...state,
-        favorites: state.favorites.filter((item, i) => i !== index)
+        favorites: state.favorites.filter(jobId => {
+          console.log(jobId);
+          return jobId !== action.payload;
+        })
       };
 
     default:

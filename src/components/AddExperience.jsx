@@ -20,7 +20,6 @@ function AddExperience() {
 
   useEffect(() => {
     if (expId) {
-      console.log(expId);
       dispatch(addImgExp(formData, userId, expId));
     }
   }, [expId]);

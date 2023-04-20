@@ -21,6 +21,8 @@ export const SET_LOADING = "SET_LOADING";
 
 export const SET_SHOWING = "SET_SHOWING";
 
+export const SET_EXP_IMG = "SET_EXP_IMG";
+
 const getOptions = method => {
   return {
     method: method,
@@ -227,8 +229,7 @@ export const modifyPosts = async (id, data) => {
 export const addImgExp = (data, userId, expId) => {
   const url = `https://striveschool-api.herokuapp.com/api/profile/${userId}/experiences/${expId}/picture`;
   const headers = {
-    Authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
-    "Content-Type": "multipart/form-data"
+    Authorization: `Bearer ${process.env.REACT_APP_API_KEY}`
   };
   const options = {
     method: "POST",
@@ -243,8 +244,12 @@ export const addImgExp = (data, userId, expId) => {
 
       if (response.ok) {
         const expImg = await response.json();
-        console.log(expImg);
-        dispatch(experienceFetch(dispatch));
+        // dispatch(experienceFetch(dispatch));
+
+        dispatch({
+          type: SET_EXP_IMG,
+          payload: expImg
+        });
       } else {
         console.log("Error: ", response.status, response.statusText);
       }

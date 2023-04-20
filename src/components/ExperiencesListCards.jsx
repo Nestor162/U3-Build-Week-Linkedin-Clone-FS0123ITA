@@ -89,10 +89,10 @@ function ExperiencesListCards() {
         arrayExperiences.slice(0, 5).map(exp => {
           return (
             <Row className="g-0">
-              <Col xs={4} style={{ maxWidth: "fit-content" }} className="pt-3 ps-3">
-                <img src={exp.image} className="img-fluid" alt={`img ${exp.title}`} />
+              <Col xs={3} style={{ maxWidth: "fit-content" }} className="pt-3 ps-3">
+                <img src={exp.image} className="img-fluid" alt={`img ${exp.title}`} width={48} />
               </Col>
-              <Col xs={11} className="position-relative exp-col">
+              <Col xs={9} className="position-relative exp-col">
                 <Trash
                   className="position-absolute delete-button"
                   size={20}

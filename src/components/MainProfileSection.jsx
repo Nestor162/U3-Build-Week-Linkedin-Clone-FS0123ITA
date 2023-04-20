@@ -30,7 +30,7 @@ const MainProfileSection = () => {
 				<Button variant="none" className="mainProfileButtonEdit" onClick={() => setModalShow(true)}>
 					<i className="bi bi-pencil mainProfileEdit"></i>
 				</Button>
-				<EditProfileModal show={modalShow} onHide={() => setModalShow(false)} />
+				<EditProfileModal show={modalShow} onHide={() => setModalShow(false)} state={modalShow} />
 
 				<Card.Body id="mainProfileBody">
 					<Card.Title className="mainProfileName">

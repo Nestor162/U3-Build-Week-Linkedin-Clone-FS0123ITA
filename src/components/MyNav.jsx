@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { Col, Container, Form, Dropdown, Nav, NavDropdown, Navbar } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
+import { Col, Container, Form, Dropdown, Nav, NavDropdown, Navbar, DropdownButton } from 'react-bootstrap';
 import logo from '../assets/logo.svg';
 import home from '../assets/home.svg';
 import rete from '../assets/rete.svg';
@@ -8,16 +8,50 @@ import msg from '../assets/msg.svg';
 
 import notifiche from '../assets/notifiche.svg';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { personalProfileFetch } from '../redux/actions';
+import { Link, useNavigate } from 'react-router-dom';
+import { personalProfileFetch, searchedJobs, SEARCHED_QUERIES } from '../redux/actions';
 
 const MyNav = () => {
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 	const profileImg = useSelector((state) => state.personalProfile.img);
+	const [selectedSearch, setSelectedSearch] = useState('');
+	const [value, setValue] = useState('');
+
+	console.log(value);
+
 	useEffect(() => {
 		personalProfileFetch(dispatch);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
+
+	const handleSearch = (e) => {
+		e.preventDefault();
+		const searchJobsWord = () => {
+			dispatch({ type: SEARCHED_QUERIES, payload: value });
+			searchedJobs(dispatch, value);
+
+			console.log('Jobs have been searched for query word:', value);
+		};
+
+		const searchJobsCategory = () => {
+			dispatch({ type: SEARCHED_QUERIES, payload: value });
+			searchedJobs(dispatch, value);
+			console.log('Jobs have been searched for query word:', value);
+		};
+
+		const searchJobsCompany = () => {
+			dispatch({ type: SEARCHED_QUERIES, payload: value });
+			searchedJobs(dispatch, value);
+			console.log('Jobs have been searched for query word:', value);
+		};
+
+		selectedSearch === '' && searchJobsWord();
+		selectedSearch === 'word' && searchJobsWord();
+		selectedSearch === 'category' && searchJobsCategory();
+		selectedSearch === 'company' && searchJobsCompany();
+	};
+
 	return (
 		<Navbar bg="light" expand="lg">
 			<Container fluid className="px-5">
@@ -29,8 +63,22 @@ const MyNav = () => {
 					<Navbar.Collapse id="navbarScroll">
 						<Col xs={2}>
 							<Form className="d-flex bg-light">
-								<Form.Control type="search" placeholder="Search" className="me-2" aria-label="Search" />
+								<Form.Control
+									type="search"
+									placeholder="Search"
+									className="me-2"
+									aria-label="Search"
+									onChange={(e) => setValue(e.target.value)}
+									onKeyDown={(e) => handleSearch(e)}
+								/>
 							</Form>
+						</Col>
+						<Col>
+							<DropdownButton id="dropdown-basic-button" title="Search by" variant="none">
+								<Dropdown.Item onClick={() => setSelectedSearch('word')}>Word</Dropdown.Item>
+								<Dropdown.Item onClick={() => setSelectedSearch('category')}>Category</Dropdown.Item>
+								<Dropdown.Item onClick={() => setSelectedSearch('company')}>Company</Dropdown.Item>
+							</DropdownButton>
 						</Col>
 						<Nav className="ms-auto my-2 my-lg-0" style={{ maxHeight: '100px' }} navbarScroll>
 							<Link className="nav-link d-flex flex-column justify-content-center align-items-center" to="/">
@@ -45,7 +93,7 @@ const MyNav = () => {
 								</span>
 								<span>My network</span>
 							</Link>
-							<Link className="nav-link d-flex flex-column justify-content-center align-items-center" to="/">
+							<Link className="nav-link d-flex flex-column justify-content-center align-items-center" to="/jobs">
 								<span>
 									<img width={25} height={25} src={work} alt="work" />
 								</span>

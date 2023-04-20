@@ -19,6 +19,10 @@ export const GET_EXPERIENCES = 'GET_EXPERIENCES';
 
 export const SET_LOADING = 'SET_LOADING';
 
+export const GET_JOBS = 'GET_JOBS';
+export const GET_SEARCHED_JOBS = 'GET_SEARCHED_JOBS';
+export const SEARCHED_QUERIES = 'SEARCHED_QUERIES';
+
 const getOptions = (method) => {
 	return {
 		method: method,
@@ -184,6 +188,7 @@ export const deletePosts = async (id, dispatch) => {
 		if (response.ok) {
 			const data = response.json();
 			console.log(data);
+			postsFetch(dispatch);
 		}
 	} catch (error) {
 		console.log(error);
@@ -209,14 +214,28 @@ export const modifyPosts = async (id, data) => {
 	}
 };
 
-// const getOptions = (method) => {
+export const jobsFetch = async (dispatch) => {
+	try {
+		const response = await fetch('https://strive-benchmark.herokuapp.com/api/jobs');
+		if (response.ok) {
+			const jobs = await response.json();
+			dispatch({ type: GET_JOBS, payload: jobs.data });
+			console.log(jobs.data);
+		}
+	} catch (error) {
+		console.log(error);
+	}
+};
 
-// const getOptions = method => {
-//   return {
-//     method: method,
-//     headers: {
-//       Authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
-//       "Content-Type": "application/json",
-//     },
-//   };
-// };
+export const searchedJobs = async (dispatch, query) => {
+	try {
+		const response = await fetch('https://strive-benchmark.herokuapp.com/api/jobs?search=' + query);
+		if (response.ok) {
+			const data = await response.json();
+			dispatch({ type: GET_SEARCHED_JOBS, payload: data.data });
+			console.log(data.data);
+		}
+	} catch (error) {
+		console.log(error);
+	}
+};

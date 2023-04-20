@@ -239,3 +239,29 @@ export const searchedJobs = async (dispatch, query) => {
 		console.log(error);
 	}
 };
+
+export const searchedJobsCategory = async (dispatch, query) => {
+	try {
+		const response = await fetch('https://strive-benchmark.herokuapp.com/api/jobs?category=' + query);
+		if (response.ok) {
+			const data = await response.json();
+			dispatch({ type: GET_SEARCHED_JOBS, payload: data.data });
+			console.log(data.data);
+		}
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+export const searchedJobsCompany = async (dispatch, query) => {
+	try {
+		const response = await fetch('https://strive-benchmark.herokuapp.com/api/jobs?company=' + query);
+		if (response.ok) {
+			const data = await response.json();
+			dispatch({ type: GET_SEARCHED_JOBS, payload: data.data });
+			console.log(data.data);
+		}
+	} catch (error) {
+		console.log(error);
+	}
+};

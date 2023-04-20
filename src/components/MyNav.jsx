@@ -8,42 +8,46 @@ import msg from '../assets/msg.svg';
 
 import notifiche from '../assets/notifiche.svg';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
-import { personalProfileFetch, searchedJobs, SEARCHED_QUERIES } from '../redux/actions';
+import { Link, redirect, useNavigate } from 'react-router-dom';
+import { personalProfileFetch, searchedJobs, searchedJobsCategory, searchedJobsCompany, SEARCHED_QUERIES } from '../redux/actions';
 
 const MyNav = () => {
 	const dispatch = useDispatch();
-	const navigate = useNavigate();
 	const profileImg = useSelector((state) => state.personalProfile.img);
 	const [selectedSearch, setSelectedSearch] = useState('');
 	const [value, setValue] = useState('');
+	const navigate = useNavigate();
 
 	console.log(value);
+	console.log(selectedSearch);
 
 	useEffect(() => {
 		personalProfileFetch(dispatch);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
-	const handleSearch = (e) => {
+	const handleSearch = (e, value) => {
 		e.preventDefault();
+		console.log('Search sent');
 		const searchJobsWord = () => {
 			dispatch({ type: SEARCHED_QUERIES, payload: value });
+			navigate('/jobs/search');
 			searchedJobs(dispatch, value);
-
 			console.log('Jobs have been searched for query word:', value);
 		};
 
 		const searchJobsCategory = () => {
 			dispatch({ type: SEARCHED_QUERIES, payload: value });
-			searchedJobs(dispatch, value);
-			console.log('Jobs have been searched for query word:', value);
+			searchedJobsCategory(dispatch, value);
+			console.log('Jobs have been searched for query category:', value);
+			return redirect('/jobs/search');
 		};
 
 		const searchJobsCompany = () => {
 			dispatch({ type: SEARCHED_QUERIES, payload: value });
-			searchedJobs(dispatch, value);
-			console.log('Jobs have been searched for query word:', value);
+			searchedJobsCompany(dispatch, value);
+			console.log('Jobs have been searched for query company:', value);
+			return redirect('/jobs/search');
 		};
 
 		selectedSearch === '' && searchJobsWord();
@@ -69,7 +73,12 @@ const MyNav = () => {
 									className="me-2"
 									aria-label="Search"
 									onChange={(e) => setValue(e.target.value)}
-									onKeyDown={(e) => handleSearch(e)}
+									onKeyDown={(e) => {
+										if (e.key === 'Enter') {
+											e.preventDefault();
+											handleSearch(e, value);
+										}
+									}}
 								/>
 							</Form>
 						</Col>

@@ -426,6 +426,7 @@ hr {
 .card-jobs:hover .star-icon {
   display: block;
   fill: goldenrod;
+  cursor: pointer;
 }
 
 .favorite-job {
@@ -478,4 +479,34 @@ hr {
 .jobDetailsAboutTitle {
   font-weight: 600;
   padding-block: 1rem;
+}
+
+.close-icon:hover {
+  fill: #d82424;
+  cursor: pointer;
+}
+
+.follow-btn:hover {
+  background-color: #e2f0fe;
+  cursor: pointer;
+}
+.following-btn:hover {
+  background-color: #ebebeb;
+  cursor: pointer;
+}
+
+.follow-btn,
+.following-btn {
+  min-width: fit-content;
+}
+
+.friends-filter {
+  cursor: pointer;
+  border-radius: 10px;
+  user-select: none;
+}
+
+.active {
+  background-color: #e2f0fe;
+  user-select: none;
 }

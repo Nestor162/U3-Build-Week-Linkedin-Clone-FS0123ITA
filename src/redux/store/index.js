@@ -1,34 +1,36 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import profileReducer from '../reducers/profileReducer';
-import postReducer from '../reducers/postReducer';
-import experiencesReducers from '../reducers/experiencesReducers';
-import profileImgReducer from '../reducers/profileImgReducer';
-import jobsReducer from '../reducers/jobsReducer';
-import { persistReducer, persistStore } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
-import favoritesReducer from '../reducers/favoritesReducer';
-import queriesReducer from '../reducers/queriesReducer';
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import profileReducer from "../reducers/profileReducer";
+import postReducer from "../reducers/postReducer";
+import experiencesReducers from "../reducers/experiencesReducers";
+import profileImgReducer from "../reducers/profileImgReducer";
+import jobsReducer from "../reducers/jobsReducer";
+import { persistReducer, persistStore } from "redux-persist";
+import storage from "redux-persist/lib/storage";
+import favoritesReducer from "../reducers/favoritesReducer";
+import queriesReducer from "../reducers/queriesReducer";
+import followReducer from "../reducers/followReducer";
 
 const persistConfig = {
-	key: 'root',
-	storage,
-	whitelist: ['favorites', 'queries'],
+  key: "root",
+  storage,
+  whitelist: ['favorites", "following', "queries"]
 };
 
 const rootReducer = combineReducers({
-	personalProfile: profileReducer,
-	experienceList: experiencesReducers,
-	postsList: postReducer,
-	jobsList: jobsReducer,
-	isShowing: profileImgReducer,
-	favorites: favoritesReducer,
-	queries: queriesReducer,
+  personalProfile: profileReducer,
+  experienceList: experiencesReducers,
+  postsList: postReducer,
+  jobsList: jobsReducer,
+  isShowing: profileImgReducer,
+  favorites: favoritesReducer,
+  following: followReducer,
+  queries: queriesReducer
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
-	reducer: persistedReducer,
+  reducer: persistedReducer
 });
 
 export const persistor = persistStore(store);

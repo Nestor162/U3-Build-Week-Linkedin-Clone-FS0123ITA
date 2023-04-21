@@ -30,6 +30,9 @@ export const SEARCHED_QUERIES = "SEARCHED_QUERIES";
 export const SET_FAVORITE = "SET_FAVORITE";
 export const REMOVE_FAVORITE = "REMOVE_FAVORITE";
 
+export const SET_FOLLOW = "SET_FOLLOW";
+export const REMOVE_FOLLOW = "REMOVE_FOLLOW";
+
 const getOptions = method => {
   return {
     method: method,

@@ -16,11 +16,11 @@ const HomepagePosts = () => {
   const following = useSelector(state => state.following.following);
   const followingIds = following.map(following => following._id);
 
-  const handleFollow = post => {
-    dispatch({ type: SET_FOLLOW, payload: post });
+  const handleFollow = user => {
+    dispatch({ type: SET_FOLLOW, payload: user });
   };
-  const handleUnFollow = post => {
-    dispatch({ type: REMOVE_FOLLOW, payload: post });
+  const handleUnFollow = user => {
+    dispatch({ type: REMOVE_FOLLOW, payload: user });
   };
 
   useEffect(() => {
@@ -55,12 +55,12 @@ const HomepagePosts = () => {
                               {post.user && post.user.name} <span> {post.user && post.user.surname}</span>
                             </p>
 
-                            {!followingIds.includes(post._id) ? (
+                            {!followingIds.includes(post.user._id) ? (
                               <span
                                 className="follow-btn py-2 pe-3 ps-2 rounded"
                                 style={{ color: "#0a66c2" }}
                                 onClick={() => {
-                                  handleFollow(post);
+                                  handleFollow(post.user);
                                 }}
                               >
                                 <PlusLg /> <span className="pb-1 align-middle fs-6 fw-semibold">Follow</span>
@@ -71,7 +71,7 @@ const HomepagePosts = () => {
                                   className="following-btn py-2 pe-3 ps-2 rounded"
                                   style={{ color: "#5e5e5e" }}
                                   onClick={() => {
-                                    handleUnFollow(post);
+                                    handleUnFollow(post.user);
                                   }}
                                 >
                                   <Check2 /> <span className="pb-1 align-middle fs-6 fw-semibold">Following</span>

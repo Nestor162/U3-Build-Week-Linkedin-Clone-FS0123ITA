@@ -416,3 +416,66 @@ hr {
   display: flex;
   margin-inline: auto;
 }
+
+.star-icon {
+  right: 30px;
+  top: 45%;
+  display: none;
+}
+
+.card-jobs:hover .star-icon {
+  display: block;
+  fill: goldenrod;
+}
+
+.favorite-job {
+  display: block;
+  fill: goldenrod;
+}
+
+hr {
+  margin: 0.15rem;
+}
+
+.asideCard {
+  width: 18rem;
+}
+
+.r-sidebar {
+  width: 15rem;
+  display: flex;
+  margin-inline: auto;
+}
+
+.jobDetailsCard {
+  margin-top: 1rem;
+  width: 50%;
+}
+
+.jobListCard {
+  margin-top: 1rem;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.jobDetailsTitle {
+  font-weight: 700;
+}
+
+.jobDetailsSubtitle {
+  color: #666666;
+  font-weight: 300;
+  font-size: 0.9rem;
+  padding-bottom: 1rem;
+}
+
+.jobDetailsIcons {
+  font-size: 0.9rem;
+  padding: 0;
+}
+
+.jobDetailsAboutTitle {
+  font-weight: 600;
+  padding-block: 1rem;
+}

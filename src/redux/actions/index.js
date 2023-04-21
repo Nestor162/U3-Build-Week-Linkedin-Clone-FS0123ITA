@@ -13,6 +13,7 @@ export const GET_POSTS = 'GET_POSTS';
 export const ADD_POST = 'ADD_POST';
 export const POST_IMAGE = 'POST_IMAGE';
 export const GET_POST_COMMENTS = 'GET_POST_COMMENTS';
+export const ADD_POST_COMMENT = 'ADD_POST_COMMENT';
 
 export const GET_EXPERIENCES = 'GET_EXPERIENCES';
 
@@ -312,6 +313,26 @@ export const postCommentsFetch = async (dispatch, id) => {
 		if (response.ok) {
 			const { comments } = await response.json();
 			dispatch({ type: GET_POST_COMMENTS, payload: comments });
+		}
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+export const postCommentsAdd = async (dispatch, newComment) => {
+	try {
+		const response = await fetch('https://striveschool-api.herokuapp.com/api/comments/', {
+			method: 'POST',
+			headers: {
+				authorization: `Bearer ${process.env.REACT_APP_STRIVE_KEY}`,
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(newComment),
+		});
+		if (response.ok) {
+			const addedComment = await response.json();
+			dispatch({ type: ADD_POST_COMMENT, payload: addedComment });
+			console.log(addedComment);
 		}
 	} catch (error) {
 		console.log(error);

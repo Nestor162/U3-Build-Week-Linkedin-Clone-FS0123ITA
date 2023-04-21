@@ -1,8 +1,8 @@
-import { ADD_POST, GET_POSTS, GET_POST_COMMENTS, POST_IMAGE } from '../actions';
+import { ADD_POST, ADD_POST_COMMENT, GET_POSTS, GET_POST_COMMENTS, POST_IMAGE } from '../actions';
 
 const initialState = {
 	posts: [],
-	comments: [],
+	comments: null,
 };
 
 const postReducer = (state = initialState, action) => {
@@ -26,6 +26,11 @@ const postReducer = (state = initialState, action) => {
 			return {
 				...state,
 				comments: action.payload,
+			};
+		case ADD_POST_COMMENT:
+			return {
+				...state,
+				comments: [action.payload],
 			};
 		default:
 			return state;

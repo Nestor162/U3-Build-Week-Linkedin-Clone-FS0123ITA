@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
-import { Button, Card, Col, Container, Spinner } from 'react-bootstrap';
+import { Button, Card, Col, Container, Spinner, Toast, ToastContainer } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { deletePosts, postCommentsFetch, postsFetch } from '../redux/actions';
+import { deletePosts, postsFetch } from '../redux/actions';
+import AddCommentToast from './AddCommentToast';
+import HomepageCommentsList from './HomepageCommentsList';
 import HomepagePostEditor from './HomepagePostEditor';
 
 const HomepagePosts = () => {
@@ -11,6 +13,13 @@ const HomepagePosts = () => {
 	const dispatch = useDispatch();
 
 	const [modalShow, setModalShow] = useState(false);
+	const [show, setShow] = useState(false);
+	const [selected, setSelected] = useState(false);
+
+	const toggleShow = () => {
+		setShow(!show);
+		setSelected(true);
+	};
 
 	useEffect(() => {
 		postsFetch(dispatch);
@@ -70,18 +79,46 @@ const HomepagePosts = () => {
 
 											<Card.Text>{post.text}</Card.Text>
 										</Card.Body>
-										<Card.Body>
-											<Button>
-												{' '}
-												<i class="bi bi-hand-thumbs-up"></i> Like{' '}
-											</Button>
-											<Button>
-												{' '}
-												<i class="bi bi-chat-dots"></i> Comment{' '}
-											</Button>
-											<Button> Repost </Button>
-											<Button> Send </Button>
+
+										<Container className="postUpperActionsBar">
+											<p>Total rate</p>
+											<p>Total comments</p>
+										</Container>
+										<hr />
+										<Card.Body className="d-flex justify-content-around">
+											<Col>
+												<Button variant="none" className="postActionsBar">
+													{' '}
+													<i class="bi bi-hand-thumbs-up"></i> Like{' '}
+												</Button>
+											</Col>
+
+											<Col>
+												<Button onClick={toggleShow} className="postActionsBar" variant="none">
+													<i class="bi bi-chat-dots"></i> Comment{' '}
+												</Button>
+												{selected && (
+													<ToastContainer postion={'start-end'}>
+														<Toast onClose={toggleShow} show={show} animation={false}>
+															<AddCommentToast id={post._id} />
+														</Toast>
+													</ToastContainer>
+												)}
+											</Col>
+											<Col>
+												<Button variant="none" className="postActionsBar">
+													{' '}
+													<i class="bi bi-arrow-repeat"></i> Repost{' '}
+												</Button>
+											</Col>
+											<Col>
+												<Button variant="none" className="postActionsBar">
+													{' '}
+													<i class="bi bi-send-fill"></i>Send{' '}
+												</Button>
+											</Col>
 										</Card.Body>
+										<HomepageCommentsList id={post._id} />
 									</Card>
 								</Container>
 							</>

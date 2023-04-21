@@ -27,6 +27,8 @@ const rootReducer = combineReducers({
   queries: queriesReducer
 });
 
+const store = configureStore({
+	reducer: rootReducer,
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({

@@ -481,6 +481,22 @@ hr {
   padding-block: 1rem;
 }
 
+.postUpperActionsBar {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  font-weight: 300;
+}
+
+.postActionsBar {
+  font-weight: 500;
+  color: #666666;
+}
+
+.postActionsBar:hover {
+  background-color: #E0E0E0;
+}
+
 .close-icon:hover {
   fill: #d82424;
   cursor: pointer;

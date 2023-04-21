@@ -21,7 +21,6 @@ const postReducer = (state = initialState, action) => {
 				...state,
 				posts: [...state.posts, action.payload],
 			};
-
 		default:
 			return state;
 	}

@@ -1,37 +1,48 @@
-import { useEffect, useState } from "react";
-import { Button, Card, Col, Container, Spinner } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
-import { REMOVE_FOLLOW, SET_FOLLOW, deletePosts, postsFetch } from "../redux/actions";
-import HomepagePostEditor from "./HomepagePostEditor";
-import { Check2, PlusLg } from "react-bootstrap-icons";
+import { useEffect, useState } from 'react';
+import { Button, Card, Col, Container, Spinner } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import { deletePosts, postsFetch } from '../redux/actions';
+import HomepagePostEditor from './HomepagePostEditor';
+import AddCommentToast from './AddCommentToast';
+import HomepageCommentsList from './HomepageCommentsList';
+import { Check2, PlusLg } from 'react-bootstrap-icons';
+import { REMOVE_FOLLOW, SET_FOLLOW, deletePosts, postsFetch } from '../redux/actions';
 
 const HomepagePosts = () => {
-  const posts = useSelector(state => state.postsList.posts);
-  const username = useSelector(state => state.personalProfile.username);
+	const posts = useSelector((state) => state.postsList.posts);
+	const username = useSelector((state) => state.personalProfile.username);
+	const comments = useSelector((state) => state.commentList.comments);
 
-  const dispatch = useDispatch();
+	const dispatch = useDispatch();
 
-  const [modalShow, setModalShow] = useState(false);
+	const [modalShow, setModalShow] = useState(false);
+	const following = useSelector((state) => state.following.following);
+	const followingIds = following.map((following) => following._id);
 
-  const following = useSelector(state => state.following.following);
-  const followingIds = following.map(following => following._id);
+	const handleFollow = (user) => {
+		dispatch({ type: SET_FOLLOW, payload: user });
+	};
+	const handleUnFollow = (user) => {
+		dispatch({ type: REMOVE_FOLLOW, payload: user });
+	};
 
-  const handleFollow = user => {
-    dispatch({ type: SET_FOLLOW, payload: user });
-  };
-  const handleUnFollow = user => {
-    dispatch({ type: REMOVE_FOLLOW, payload: user });
-  };
+	const [isFilterActive, setIsFilterActive] = useState(false);
 
-  const [isFilterActive, setIsFilterActive] = useState(false);
+	const handleFilterClick = () => {
+		setIsFilterActive(!isFilterActive);
+	};
 
-  const handleFilterClick = () => {
-    setIsFilterActive(!isFilterActive);
-  };
+	const filteredPosts = isFilterActive ? posts.filter((post) => followingIds.includes(post.user._id)) : posts;
 
-  const filteredPosts = isFilterActive ? posts.filter(post => followingIds.includes(post.user._id)) : posts;
+	const [numToShow, setNumToShow] = useState(10);
 
-  const [numToShow, setNumToShow] = useState(10);
+	const [show, setShow] = useState(false);
+	const [selected, setSelected] = useState('');
+
+	const toggleShow = (id) => {
+		setShow(!show);
+		setSelected(id);
+	};
 
   useEffect(() => {
     postsFetch(dispatch);
@@ -129,8 +140,55 @@ const HomepagePosts = () => {
                         )}
                       </Card.Title>
 
-                      <Card.Text>{post.text}</Card.Text>
+                   
+					<Card.Text>{post.text}</Card.Text>
                     </Card.Body>
+
+                    <Container className="postUpperActionsBar">
+                      <p>Total rate</p>
+                      <p>Total comments</p>
+                    </Container>
+                    <hr />
+                    <Card.Body className="d-flex justify-content-around">
+                      <Col>
+                        <Button variant="none" className="postActionsBar">
+                          {" "}
+                          <i class="bi bi-hand-thumbs-up"></i> Like{" "}
+                        </Button>
+                      </Col>
+
+                      <Col>
+                        <Button
+                          onClick={() => {
+                            toggleShow(post._id);
+                          }}
+                          className="postActionsBar"
+                          variant="none"
+                        >
+                          <i class="bi bi-chat-dots"></i> Comment{" "}
+                        </Button>
+                        {selected === post._id && (
+                          <ToastContainer postion={"start-end"}>
+                            <Toast onClose={toggleShow} show={show} animation={false}>
+                              <AddCommentToast id={post._id} />
+                            </Toast>
+                          </ToastContainer>
+                        )}
+                      </Col>
+                      <Col>
+                        <Button variant="none" className="postActionsBar">
+                          {" "}
+                          <i class="bi bi-arrow-repeat"></i> Repost{" "}
+                        </Button>
+                      </Col>
+                      <Col>
+                        <Button variant="none" className="postActionsBar">
+                          {" "}
+                          <i class="bi bi-send-fill"></i>Send{" "}
+                        </Button>
+                      </Col>
+                    </Card.Body>
+                    {comments && <HomepageCommentsList id={post._id} />}
                   </Card>
                 </Container>
               </>

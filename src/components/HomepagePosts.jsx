@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Badge, Button, Card, Col, Container, Spinner } from "react-bootstrap";
+import { Button, Card, Col, Container, Spinner } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { REMOVE_FOLLOW, SET_FOLLOW, deletePosts, postsFetch } from "../redux/actions";
 import HomepagePostEditor from "./HomepagePostEditor";

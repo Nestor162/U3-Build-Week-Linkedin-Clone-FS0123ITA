@@ -6,6 +6,7 @@ import { REMOVE_FAVORITE, SET_FAVORITE } from "../redux/actions";
 const JobsList = () => {
   const jobs = useSelector(state => state.jobsList.searchedJobs);
   const favorites = useSelector(state => state.favorites.favorites);
+  const favoritesIds = favorites.map(job => job._id);
   const dispatch = useDispatch();
 
   const handleFavorite = job => {
@@ -25,9 +26,9 @@ const JobsList = () => {
             <>
               <Card>
                 <Card.Body className="position-relative card-jobs">
-                  {favorites.includes(job) ? (
+                  {favoritesIds.includes(job._id) ? (
                     <StarFill
-                      className="position-absolute star-icon d-block"
+                      className="position-absolute star-icon favorite-job d-block"
                       size={"22px"}
                       fill="goldenrod"
                       onClick={() => handleUnfavorite(job)}

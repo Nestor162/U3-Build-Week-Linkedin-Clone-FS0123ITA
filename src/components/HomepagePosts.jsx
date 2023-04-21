@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Button, Card, Col, Container, Spinner } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { deletePosts, postsFetch } from '../redux/actions';
+import { deletePosts, postCommentsFetch, postsFetch } from '../redux/actions';
 import HomepagePostEditor from './HomepagePostEditor';
 
 const HomepagePosts = () => {
@@ -69,6 +69,18 @@ const HomepagePosts = () => {
 											</Card.Title>
 
 											<Card.Text>{post.text}</Card.Text>
+										</Card.Body>
+										<Card.Body>
+											<Button>
+												{' '}
+												<i class="bi bi-hand-thumbs-up"></i> Like{' '}
+											</Button>
+											<Button>
+												{' '}
+												<i class="bi bi-chat-dots"></i> Comment{' '}
+											</Button>
+											<Button> Repost </Button>
+											<Button> Send </Button>
 										</Card.Body>
 									</Card>
 								</Container>

@@ -3,7 +3,7 @@ import { Button, Card, Col, Container, Spinner } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { deletePosts, postsFetch } from "../redux/actions";
 import HomepagePostEditor from "./HomepagePostEditor";
-import { PersonFillAdd } from "react-bootstrap-icons";
+import { PlusLg } from "react-bootstrap-icons";
 
 const HomepagePosts = () => {
   const posts = useSelector(state => state.postsList.posts);
@@ -40,14 +40,15 @@ const HomepagePosts = () => {
                         </Col>
 
                         <Col xs={9}>
-                          <p className="postHeader d-inline me-3">
-                            {post.user && post.user.name} <span> {post.user && post.user.surname}</span>
-                          </p>
-                          <Button variant="outline-secondary rounded-pill px-3 py-1">
-                            <PersonFillAdd className="" /> <span className="pb-1">Connect</span>
-                          </Button>
+                          <div className="d-flex justify-content-between align-items-center">
+                            <p className="postHeader d-inline">
+                              {post.user && post.user.name} <span> {post.user && post.user.surname}</span>
+                            </p>
+                            <span className="follow-btn py-2 pe-3 ps-2 rounded" style={{ color: "#0a66c2" }}>
+                              <PlusLg /> <span className="pb-1 align-middle fs-6 fw-semibold">Follow</span>
+                            </span>
+                          </div>
                           <p className="postHeaderTitle"> {post.user && post.user.title}</p>
-
                           <Card.Subtitle className="py-2 text-muted fw-light">
                             <div className="postHeaderCreateDate">
                               {new Date(post.createdAt).toLocaleDateString()}

@@ -426,6 +426,7 @@ hr {
 .card-jobs:hover .star-icon {
   display: block;
   fill: goldenrod;
+  cursor: pointer;
 }
 
 .favorite-job {
@@ -482,4 +483,10 @@ hr {
 
 .close-icon:hover {
   fill: #d82424;
+  cursor: pointer;
+}
+
+.follow-btn:hover {
+  background-color: #e2f0fe;
+  cursor: pointer;
 }

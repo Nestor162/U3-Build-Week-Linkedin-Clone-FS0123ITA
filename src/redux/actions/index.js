@@ -179,7 +179,7 @@ export const addPosts = async (dispatch, data) => {
 	}
 };
 
-export const deletePosts = async (id, dispatch) => {
+export const deletePosts = async (id) => {
 	try {
 		let response = await fetch(`https://striveschool-api.herokuapp.com/api/posts/${id}`, {
 			method: 'DELETE',
@@ -333,6 +333,43 @@ export const postCommentsAdd = async (dispatch, newComment) => {
 		if (response.ok) {
 			const addedComment = await response.json();
 			dispatch({ type: ADD_POST_COMMENT, payload: addedComment });
+		}
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+export const postCommentsDelete = async (id) => {
+	try {
+		const response = await fetch('https://striveschool-api.herokuapp.com/api/comments/' + id, {
+			method: 'DELETE',
+			headers: {
+				authorization: `Bearer ${process.env.REACT_APP_STRIVE_KEY}`,
+				'Content-Type': 'application/json',
+			},
+		});
+		if (response.ok) {
+			const data = await response.json();
+			console.log(data);
+		}
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+export const postCommentsModify = async (id, editedComment) => {
+	try {
+		const response = await fetch('https://striveschool-api.herokuapp.com/api/comments/' + id, {
+			method: 'PUT',
+			headers: {
+				authorization: `Bearer ${process.env.REACT_APP_STRIVE_KEY}`,
+				'Content-Type': 'application/json',
+			},
+			body: editedComment,
+		});
+		if (response.ok) {
+			const data = await response.json();
+			console.log(data);
 		}
 	} catch (error) {
 		console.log(error);

@@ -142,14 +142,16 @@ const HomepagePosts = () => {
           </Container>
         )}
         <Container className="d-flex justify-content-center">
-          <Button
-            className="postCreatorButton"
-            onClick={() => {
-              setNumToShow(numToShow + 10);
-            }}
-          >
-            See more
-          </Button>
+          {filteredPosts.length > 0 && (
+            <Button
+              className="postCreatorButton"
+              onClick={() => {
+                setNumToShow(numToShow + 10);
+              }}
+            >
+              See more
+            </Button>
+          )}
         </Container>
       </Container>
     </>

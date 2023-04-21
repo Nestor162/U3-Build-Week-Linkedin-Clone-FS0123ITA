@@ -499,3 +499,14 @@ hr {
 .following-btn {
   min-width: fit-content;
 }
+
+.friends-filter {
+  cursor: pointer;
+  border-radius: 10px;
+  user-select: none;
+}
+
+.active {
+  background-color: #e2f0fe;
+  user-select: none;
+}

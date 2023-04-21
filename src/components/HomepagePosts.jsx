@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Card, Col, Container, Spinner } from "react-bootstrap";
+import { Badge, Button, Card, Col, Container, Spinner } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { REMOVE_FOLLOW, SET_FOLLOW, deletePosts, postsFetch } from "../redux/actions";
 import HomepagePostEditor from "./HomepagePostEditor";
@@ -23,6 +23,12 @@ const HomepagePosts = () => {
     dispatch({ type: REMOVE_FOLLOW, payload: user });
   };
 
+  const [isFilterActive, setIsFilterActive] = useState(false);
+
+  const handleFilterClick = () => {
+    setIsFilterActive(!isFilterActive);
+  };
+
   useEffect(() => {
     postsFetch(dispatch);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -31,6 +37,12 @@ const HomepagePosts = () => {
   return (
     <>
       <Container className="py-3">
+        <span
+          className={`d-inline-block friends-filter p-2 m-3 border border-primary ${isFilterActive ? "active" : ""}`}
+          onClick={handleFilterClick}
+        >
+          Only Friend's posts
+        </span>
         {posts.length > 0 ? (
           posts.slice(0, 10).map(post => {
             return (

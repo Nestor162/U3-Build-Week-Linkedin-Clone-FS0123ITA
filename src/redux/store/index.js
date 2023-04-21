@@ -7,11 +7,12 @@ import jobsReducer from "../reducers/jobsReducer";
 import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import favoritesReducer from "../reducers/favoritesReducer";
+import followReducer from "../reducers/followReducer";
 
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["favorites"]
+  whitelist: ["favorites", "following"]
 };
 
 const rootReducer = combineReducers({
@@ -20,7 +21,8 @@ const rootReducer = combineReducers({
   postsList: postReducer,
   jobsList: jobsReducer,
   isShowing: profileImgReducer,
-  favorites: favoritesReducer
+  favorites: favoritesReducer,
+  following: followReducer
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

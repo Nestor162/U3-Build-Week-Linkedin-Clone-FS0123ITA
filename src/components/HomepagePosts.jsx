@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { Button, Card, Col, Container, Spinner } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { deletePosts, postsFetch } from "../redux/actions";
+import { REMOVE_FOLLOW, SET_FOLLOW, deletePosts, postsFetch } from "../redux/actions";
 import HomepagePostEditor from "./HomepagePostEditor";
-import { PlusLg } from "react-bootstrap-icons";
+import { Check2, PlusLg } from "react-bootstrap-icons";
 
 const HomepagePosts = () => {
   const posts = useSelector(state => state.postsList.posts);
@@ -12,6 +12,16 @@ const HomepagePosts = () => {
   const dispatch = useDispatch();
 
   const [modalShow, setModalShow] = useState(false);
+
+  const following = useSelector(state => state.following.following);
+  const followingIds = following.map(following => following._id);
+
+  const handleFollow = post => {
+    dispatch({ type: SET_FOLLOW, payload: post });
+  };
+  const handleUnFollow = post => {
+    dispatch({ type: REMOVE_FOLLOW, payload: post });
+  };
 
   useEffect(() => {
     postsFetch(dispatch);
@@ -44,9 +54,30 @@ const HomepagePosts = () => {
                             <p className="postHeader d-inline">
                               {post.user && post.user.name} <span> {post.user && post.user.surname}</span>
                             </p>
-                            <span className="follow-btn py-2 pe-3 ps-2 rounded" style={{ color: "#0a66c2" }}>
-                              <PlusLg /> <span className="pb-1 align-middle fs-6 fw-semibold">Follow</span>
-                            </span>
+
+                            {!followingIds.includes(post._id) ? (
+                              <span
+                                className="follow-btn py-2 pe-3 ps-2 rounded"
+                                style={{ color: "#0a66c2" }}
+                                onClick={() => {
+                                  handleFollow(post);
+                                }}
+                              >
+                                <PlusLg /> <span className="pb-1 align-middle fs-6 fw-semibold">Follow</span>
+                              </span>
+                            ) : (
+                              <>
+                                <span
+                                  className="following-btn py-2 pe-3 ps-2 rounded"
+                                  style={{ color: "#5e5e5e" }}
+                                  onClick={() => {
+                                    handleUnFollow(post);
+                                  }}
+                                >
+                                  <Check2 /> <span className="pb-1 align-middle fs-6 fw-semibold">Following</span>
+                                </span>
+                              </>
+                            )}
                           </div>
                           <p className="postHeaderTitle"> {post.user && post.user.title}</p>
                           <Card.Subtitle className="py-2 text-muted fw-light">

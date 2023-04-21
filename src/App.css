@@ -490,3 +490,12 @@ hr {
   background-color: #e2f0fe;
   cursor: pointer;
 }
+.following-btn:hover {
+  background-color: #ebebeb;
+  cursor: pointer;
+}
+
+.follow-btn,
+.following-btn {
+  min-width: fit-content;
+}

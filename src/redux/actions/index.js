@@ -311,8 +311,9 @@ export const postCommentsFetch = async (dispatch, id) => {
 			},
 		});
 		if (response.ok) {
-			const { comments } = await response.json();
+			const comments = await response.json();
 			dispatch({ type: GET_POST_COMMENTS, payload: comments });
+			console.log('FETCHED COMMENTS:', comments);
 		}
 	} catch (error) {
 		console.log(error);
@@ -332,7 +333,6 @@ export const postCommentsAdd = async (dispatch, newComment) => {
 		if (response.ok) {
 			const addedComment = await response.json();
 			dispatch({ type: ADD_POST_COMMENT, payload: addedComment });
-			console.log(addedComment);
 		}
 	} catch (error) {
 		console.log(error);

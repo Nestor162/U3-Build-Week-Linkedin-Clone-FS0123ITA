@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Button, Form, Toast } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
-import { postCommentsAdd } from '../redux/actions';
+import { postCommentsAdd, postCommentsFetch } from '../redux/actions';
 
 const AddCommentToast = (props) => {
 	const dispatch = useDispatch();
@@ -15,8 +15,8 @@ const AddCommentToast = (props) => {
 
 	const addNewComment = (e) => {
 		e.preventDefault();
-		console.log(comment);
 		postCommentsAdd(dispatch, newComment);
+		postCommentsFetch(dispatch);
 	};
 
 	return (

@@ -1,46 +1,23 @@
 import { useEffect } from 'react';
-import { Card, Col, Container } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { postCommentsFetch } from '../redux/actions';
+import HomepageSingleComment from './HomepageSingleComment';
 
 const HomepageCommentsList = (props) => {
+	const comments = useSelector((state) => state.commentList.comments);
 	const dispatch = useDispatch();
-	const comments = useSelector((state) => state.postsList.comments);
-	console.log('EXISTING COMMENTS:', comments);
 
 	useEffect(() => {
 		postCommentsFetch(dispatch, props.id);
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	}, [dispatch, props.id]);
 
 	return (
 		<>
-			{comments ? (
-				comments.map((comment) => {
-					return (
-						<>
-							<Card.Body>
-								<Container>
-									<Card.Title>
-										<Col xs={1}>
-											<img src="" alt="" />
-										</Col>
-										<Col>
-											<p>Nome e Cognome</p>
-											<p>Titolo lavoro</p>
-										</Col>
-									</Card.Title>
-									<Card.Text>
-										<p> {comment.comment}</p>
-									</Card.Text>
-								</Container>
-							</Card.Body>
-						</>
-					);
-				})
-			) : (
-				<p> No comments here yet.</p>
-			)}
+			{comments.map((comment) => {
+				if (comment.elementId === props.id) {
+					return <HomepageSingleComment author={comment.author} comment={comment.comment} key={comment._id} id={comment._id} />;
+				}
+			})}
 		</>
 	);
 };

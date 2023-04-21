@@ -9,6 +9,7 @@ import HomepagePostEditor from './HomepagePostEditor';
 const HomepagePosts = () => {
 	const posts = useSelector((state) => state.postsList.posts);
 	const username = useSelector((state) => state.personalProfile.username);
+	const comments = useSelector((state) => state.commentList.comments);
 
 	const dispatch = useDispatch();
 
@@ -118,7 +119,7 @@ const HomepagePosts = () => {
 												</Button>
 											</Col>
 										</Card.Body>
-										<HomepageCommentsList id={post._id} />
+										{comments && <HomepageCommentsList id={post._id} />}
 									</Card>
 								</Container>
 							</>

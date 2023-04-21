@@ -25,31 +25,21 @@ export const GET_JOBS = 'GET_JOBS';
 export const GET_SEARCHED_JOBS = 'GET_SEARCHED_JOBS';
 export const SEARCHED_QUERIES = 'SEARCHED_QUERIES';
 
-export const SET_LOADING = 'SET_LOADING';
-
-export const SET_SHOWING = 'SET_SHOWING';
-
-export const SET_EXP_IMG = 'SET_EXP_IMG';
-
-export const GET_JOBS = 'GET_JOBS';
-export const GET_SEARCHED_JOBS = 'GET_SEARCHED_JOBS';
-export const SEARCHED_QUERIES = 'SEARCHED_QUERIES';
-
 export const SET_FAVORITE = 'SET_FAVORITE';
 export const REMOVE_FAVORITE = 'REMOVE_FAVORITE';
 
 export const SET_FOLLOW = 'SET_FOLLOW';
 export const REMOVE_FOLLOW = 'REMOVE_FOLLOW';
 
-const getOptions = (method) => {
-	return {
-		method: method,
-		headers: {
-			Authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
-			'Content-Type': 'application/json',
-		},
-	};
-};
+// const getOptions = (method) => {
+// 	return {
+// 		method: method,
+// 		headers: {
+// 			Authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
+// 			'Content-Type': 'application/json',
+// 		},
+// 	};
+// };
 
 export const personalProfileFetch = async (dispatch) => {
 	try {

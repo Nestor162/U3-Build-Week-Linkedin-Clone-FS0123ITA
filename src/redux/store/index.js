@@ -1,32 +1,34 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import profileReducer from "../reducers/profileReducer";
-import postReducer from "../reducers/postReducer";
-import experiencesReducers from "../reducers/experiencesReducers";
-import profileImgReducer from "../reducers/profileImgReducer";
-import jobsReducer from "../reducers/jobsReducer";
-import { persistReducer, persistStore } from "redux-persist";
-import storage from "redux-persist/lib/storage";
-import favoritesReducer from "../reducers/favoritesReducer";
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import profileReducer from '../reducers/profileReducer';
+import postReducer from '../reducers/postReducer';
+import experiencesReducers from '../reducers/experiencesReducers';
+import profileImgReducer from '../reducers/profileImgReducer';
+import jobsReducer from '../reducers/jobsReducer';
+import { persistReducer, persistStore } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import favoritesReducer from '../reducers/favoritesReducer';
+import queriesReducer from '../reducers/queriesReducer';
 
 const persistConfig = {
-  key: "root",
-  storage,
-  whitelist: ["favorites"]
+	key: 'root',
+	storage,
+	whitelist: ['favorites', 'queries'],
 };
 
 const rootReducer = combineReducers({
-  personalProfile: profileReducer,
-  experienceList: experiencesReducers,
-  postsList: postReducer,
-  jobsList: jobsReducer,
-  isShowing: profileImgReducer,
-  favorites: favoritesReducer
+	personalProfile: profileReducer,
+	experienceList: experiencesReducers,
+	postsList: postReducer,
+	jobsList: jobsReducer,
+	isShowing: profileImgReducer,
+	favorites: favoritesReducer,
+	queries: queriesReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
-  reducer: persistedReducer
+	reducer: persistedReducer,
 });
 
 export const persistor = persistStore(store);

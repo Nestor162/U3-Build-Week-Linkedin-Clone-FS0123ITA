@@ -2,7 +2,7 @@ import { Card, Container } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 
 const JobsLatestSearch = () => {
-	const searchedQueries = useSelector((state) => state.jobsList.searchedQueries);
+	const searchedQueries = useSelector((state) => state.queries.searchedQueries);
 	return (
 		<>
 			<Container>
@@ -10,7 +10,7 @@ const JobsLatestSearch = () => {
 					<Card.Body>
 						<Card.Title>Your latest searches </Card.Title>
 						{searchedQueries.length > 0 ? (
-							searchedQueries.map((query) => {
+							searchedQueries.slice(0, 5).map((query) => {
 								return <Card.Text>{query}</Card.Text>;
 							})
 						) : (

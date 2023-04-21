@@ -31,6 +31,8 @@ const HomepagePosts = () => {
 
   const filteredPosts = isFilterActive ? posts.filter(post => followingIds.includes(post.user._id)) : posts;
 
+  const [numToShow, setNumToShow] = useState(10);
+
   useEffect(() => {
     postsFetch(dispatch);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -47,7 +49,7 @@ const HomepagePosts = () => {
         </span>
 
         {posts.length > 0 && filteredPosts.length > 0 ? (
-          filteredPosts.slice(0, 10).map(post => {
+          filteredPosts.slice(0, numToShow).map(post => {
             return (
               <>
                 <Container key={post._id} className="my-2">
@@ -140,7 +142,14 @@ const HomepagePosts = () => {
           </Container>
         )}
         <Container className="d-flex justify-content-center">
-          <Button className="postCreatorButton">See more</Button>
+          <Button
+            className="postCreatorButton"
+            onClick={() => {
+              setNumToShow(numToShow + 10);
+            }}
+          >
+            See more
+          </Button>
         </Container>
       </Container>
     </>

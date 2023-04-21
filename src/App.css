@@ -386,3 +386,37 @@ body {
 .jobsUpdateTitle {
   font-weight: 600;
 }
+
+
+.jobDetailsCard {
+  margin-top: 1rem;
+  width: 50%;
+}
+
+.jobListCard {
+  margin-top: 1rem;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.jobDetailsTitle {
+  font-weight: 700;
+}
+
+.jobDetailsSubtitle {
+  color: #666666;
+  font-weight: 300;
+  font-size: 0.9rem;
+  padding-bottom: 1rem;
+}
+
+.jobDetailsIcons {
+  font-size: 0.9rem;
+  padding: 0;
+}
+
+.jobDetailsAboutTitle {
+  font-weight: 600;
+  padding-block: 1rem;
+}

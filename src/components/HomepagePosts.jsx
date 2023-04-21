@@ -29,6 +29,8 @@ const HomepagePosts = () => {
     setIsFilterActive(!isFilterActive);
   };
 
+  const filteredPosts = isFilterActive ? posts.filter(post => followingIds.includes(post.user._id)) : posts;
+
   useEffect(() => {
     postsFetch(dispatch);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -43,8 +45,9 @@ const HomepagePosts = () => {
         >
           Only Friend's posts
         </span>
-        {posts.length > 0 ? (
-          posts.slice(0, 10).map(post => {
+
+        {posts.length > 0 && filteredPosts.length > 0 ? (
+          filteredPosts.slice(0, 10).map(post => {
             return (
               <>
                 <Container key={post._id} className="my-2">

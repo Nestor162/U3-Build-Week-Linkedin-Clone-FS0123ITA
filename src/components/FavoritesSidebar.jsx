@@ -1,9 +1,12 @@
 import React from "react";
 import { Badge } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { X } from "react-bootstrap-icons";
+import { useDispatch, useSelector } from "react-redux";
+import { REMOVE_FAVORITE } from "../redux/actions";
 
 function FavoritesSidebar() {
   const favoriteList = useSelector(state => state.favorites.favorites);
+  const dispatch = useDispatch();
 
   return (
     <aside className="r-sidebar d-flex flex-column pt-3">
@@ -15,7 +18,16 @@ function FavoritesSidebar() {
             return (
               <>
                 <div key={favJob._id} className="m-2">
-                  <h5>{favJob.title}</h5>
+                  <div className="d-flex justify-content-between">
+                    <h5>{favJob.title}</h5>
+                    <X
+                      size={30}
+                      className="close-icon"
+                      onClick={() => {
+                        dispatch({ type: REMOVE_FAVORITE, payload: favJob });
+                      }}
+                    />
+                  </div>
                   <p className="text-secondary mb-2">{favJob.company_name}</p>
                   <small className="text-muted d-block mb-2">
                     {new Date(favJob.publication_date).toLocaleString()}

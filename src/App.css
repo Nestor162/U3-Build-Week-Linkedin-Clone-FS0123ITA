@@ -479,3 +479,7 @@ hr {
   font-weight: 600;
   padding-block: 1rem;
 }
+
+.close-icon:hover {
+  fill: #d82424;
+}
